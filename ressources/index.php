@@ -22,7 +22,8 @@ require '../includes/header.php';
                   <span style="color: #ffffff; background-color: #000000;">Blanc : #ffffff</span><br>
                   <span style="color: #000000;">Noir : #000000</span><br>
                   <br>
-                  Police : <a href="http://www.dafont.com/fr/londrina.font">http://www.dafont.com/fr/londrina.font</a>
+                  Police : <a href="http://www.dafont.com/fr/londrina.font">http://www.dafont.com/fr/londrina.font</a><br>
+                  Les vectoriels sont disponibles plus bas dans la page.
                 </p>
 
                 <br>
@@ -82,21 +83,21 @@ require '../includes/header.php';
 
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                    <h3 class="panel-title">Logotype ASBF 2015 Badges - Vectoriel</h3>
-                  </div>
-                  <div class="panel-body">
-                    <a href="badges_asbf_2015.svg">Vectoriel des badges</a>
-                    <a href="badges_asbf_2015.svg"><img src="badges_asbf_2015.svg" alt="Logotype ASBF 2015 Vectoriel des Badges" style="max-width: 100%; max-height: initial;"></a>
-                  </div>
-                </div>
-
-                <div class="panel panel-default">
-                  <div class="panel-heading">
                     <h3 class="panel-title">Logotype ASBF 2015 Logos - Vectoriel</h3>
                   </div>
                   <div class="panel-body">
                     <a href="logotype_asbf_2015.svg">Vectoriel des logos</a>
                     <a href="logotype_asbf_2015.svg"><img src="logotype_asbf_2015.svg" alt="Logotype ASBF 2015 Vectoriel des logos" style="max-width: 100%; max-height: initial;"></a>
+                  </div>
+                </div>
+
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Logotype ASBF 2015 Badges - Vectoriel</h3>
+                  </div>
+                  <div class="panel-body">
+                    <a href="badges_asbf_2015.svg">Vectoriel des badges</a>
+                    <a href="badges_asbf_2015.svg"><img src="badges_asbf_2015.svg" alt="Logotype ASBF 2015 Vectoriel des Badges" style="max-width: 100%; max-height: initial;"></a>
                   </div>
                 </div>
 
