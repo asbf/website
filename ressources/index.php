@@ -70,14 +70,35 @@ require '../includes/header.php';
 
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                    <h3 class="panel-title">Logotype ASBF 2015 - Vectoriel</h3>
+                    <h3 class="panel-title">Logotype ASBF 2015 Badges - PNG</h3>
                   </div>
                   <div class="panel-body">
-                    <a href="logotype_asbf_2015.svg">Vectoriel des images</a>
-                    <a href="logotype_asbf_2015.svg"><img src="logotype_asbf_2015.svg" style="max-width: 100%; max-height: initial;"></a>
+                    <a href="badge_membre.png"><img src="badge_membre.png" alt="Logotype ASBF 2015 Badge Membre"></a>
+                    &nbsp; <a href="badge_membre.png">Badge membre</a><br>
+                    <a href="badge_partenaire.png"><img src="badge_partenaire.png" alt="Logotype ASBF 2015 Badge Partenaire"></a>
+                    &nbsp; <a href="badge_partenaire.png">Badge partenaire</a>
                   </div>
                 </div>
 
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Logotype ASBF 2015 Badges - Vectoriel</h3>
+                  </div>
+                  <div class="panel-body">
+                    <a href="badges_asbf_2015.svg">Vectoriel des badges</a>
+                    <a href="badges_asbf_2015.svg"><img src="badges_asbf_2015.svg" alt="Logotype ASBF 2015 Vectoriel des Badges" style="max-width: 100%; max-height: initial;"></a>
+                  </div>
+                </div>
+
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Logotype ASBF 2015 Logos - Vectoriel</h3>
+                  </div>
+                  <div class="panel-body">
+                    <a href="logotype_asbf_2015.svg">Vectoriel des logos</a>
+                    <a href="logotype_asbf_2015.svg"><img src="logotype_asbf_2015.svg" alt="Logotype ASBF 2015 Vectoriel des logos" style="max-width: 100%; max-height: initial;"></a>
+                  </div>
+                </div>
 
               </div>
             </div>
