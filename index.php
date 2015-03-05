@@ -71,9 +71,9 @@
               </div>
               <div class="panel-body">
                 <p>
-                  <b>Les Actions Solidaires Brony Francophone</b> (ASBF) sont une association dont l’objectif est l’organisation d’actions solidaires diverses. Son ambition est d’apporter une aide humaine et matérielle aux autres, ainsi que d’aider à la prise de conscience de chacun envers ces actions par la diffusion d’informations.<br>
+                  <b>Actions Solidaires Brony Francophone</b> (ASBF) est une association dont l’objectif est l’organisation d’actions solidaires diverses. Son ambition est d’apporter une aide humaine aux autres, ainsi que d’aider à la prise de conscience de chacun envers ces actions par la diffusion d’informations.<br>
                   <br>
-                  Son nom et son logo ont pour origine le fait que ses membres fondateurs sont issus de la communauté <a target="_blank" href="http://en.wikipedia.org/wiki/My_Little_Pony:_Friendship_Is_Magic_fandom">brony</a>. Cette association s’inspire de <a target="_blank" href="http://broniesforgood.org/">Bronies for Good</a>, association solidaire basée aux États-Unis, et couvre quant à elle la zone francophone. L’ASBF est partenaire de Bronies for Good depuis sa création.
+                  Son nom a pour origine la communauté Brony. Cette association s’inspire de <a target="_blank" href="http://broniesforgood.org/">Bronies for Good</a>, (association solidaire basée aux États-Unis), et couvre quant à elle la zone francophone. L’ASBF est partenaire de Bronies for Good depuis sa création, avec pour objectif des actions humataires internationales.
                 </p>
                 <p>
                   Pour tout contact, vous pouvez nous envoyer un mail à <noscript>contact [~at~] asbf.fr</noscript>
