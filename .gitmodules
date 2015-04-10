@@ -1,0 +1,9 @@
+[submodule "includes/parsedown"]
+	path = includes/parsedown
+	url = https://github.com/erusev/parsedown
+[submodule "includes/parsedown-extra"]
+	path = includes/parsedown-extra
+	url = https://github.com/erusev/parsedown-extra
+[submodule "includes/PHPMailer"]
+	path = includes/PHPMailer
+	url = https://github.com/PHPMailer/PHPMailer/

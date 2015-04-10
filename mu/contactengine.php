@@ -44,11 +44,6 @@ if(!empty($Bot)) {
     $mail->Body = nl2br($Message);
     $mail->AltBody = $Message;
 
-    echo $Message ."<br>";
-
-    var_dump($mail);
-    die();
-
     //send the message, check for errors
     if (!$mail->send()) {
         print "<meta http-equiv=\"refresh\" content=\"0;URL=./?error\">";

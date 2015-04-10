@@ -16,14 +16,14 @@ require '../includes/nav.php'; ?>
 										// Foreach news
 									?>
 										<li>
-											<span class="title"><a href="/news/lorem">Lorem ipsum dolor sit amet</a></span>
+											<span class="title"><a href="/news/#">Lorem ipsum dolor sit amet</a></span>
 											<span class="date">date</span>
 										</li>
 									<?php
 										// Fin foreach
 									?>
 										<li>
-											<span class="title"><a href="/news/lorem">Lorem ipsum dolor sit amet</a></span>
+											<span class="title"><a href="/news/#">Lorem ipsum dolor sit amet</a></span>
 											<span class="date">date</span>
 										</li>
 									</ul>

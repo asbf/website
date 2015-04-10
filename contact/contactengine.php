@@ -5,7 +5,7 @@ require '../includes/mail.php';
 
 $Subject = [['contact@asbf.fr', 'Bureau ASBF'], ['secretaire@asbf.fr', 'Secrétaire ASBF'], ['tresorier@asbf.fr', 'Trésorier ASBF'], ['tech@asbf.fr', 'Technique ASBF'], ['contact@asbf.fr', 'Général ASBF']];
 
-$i = Trim(stripslashes($_POST['select']));
+$i = Trim(stripslashes($_POST['select'])) - 1;
 $Name = Trim(stripslashes($_POST['nom']));
 $Email = Trim(stripslashes($_POST['email']));
 $Message = '<img src="http://asbf.fr/img/header.png" style="max-width: 100%;"><h1>Contact depuis le site ASBF.fr</h1><hr>';
@@ -14,7 +14,7 @@ $Message = $Message . Trim(stripslashes($_POST['message']));
 $Bot = Trim(stripslashes($_POST['captcha']));
 $SendSelf = Trim(stripslashes($_POST['self']));
 
-if(!empty($Bot)) {
+if(!empty($Bot) OR $i < 0) {
     print "<meta http-equiv=\"refresh\" content=\"0;URL=./?bot\">";
 } else {
     $mail = new PHPMailer();
@@ -41,11 +41,6 @@ if(!empty($Bot)) {
     $mail->Subject = "[". $Subject[$i][1] ."] Message de ". $Name ." <". $Email .">";
     $mail->Body = nl2br($Message);
     $mail->AltBody = $Message;
-
-    echo $Message ."<br>";
-
-    var_dump($mail);
-    die();
 
     //send the message, check for errors
     if (!$mail->send()) {
