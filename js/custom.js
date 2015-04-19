@@ -1,7 +1,1 @@
-function modalOpen() {
-	// Display block
-}
-
-function modalClose() {
-	// Hide block
-}
+// Ren pour l'instant
