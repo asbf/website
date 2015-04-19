@@ -1,7 +1,7 @@
 <?php
 date_default_timezone_set('UTC');
 require '../includes/PHPMailer/PHPMailerAutoload.php';
-require '../includes/mail.php';
+require '../includes/logi.php';
 
 $Name = Trim(stripslashes($_POST['nom']));
 $Email = Trim(stripslashes($_POST['email']));

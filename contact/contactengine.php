@@ -1,7 +1,7 @@
 <?php
 date_default_timezone_set('UTC');
 require '../includes/PHPMailer/PHPMailerAutoload.php';
-require '../includes/mail.php';
+require '../includes/logins.php';
 
 $Subject = [['contact@asbf.fr', 'Bureau ASBF'], ['secretaire@asbf.fr', 'Secrétaire ASBF'], ['tresorier@asbf.fr', 'Trésorier ASBF'], ['tech@asbf.fr', 'Technique ASBF'], ['contact@asbf.fr', 'Général ASBF']];
 

@@ -5,7 +5,7 @@ Site web de l'ASBF.
 ---
 
 ### Ressources
-- [PHPMailer/PHPMailer/](https://github.com/PHPMailer/PHPMailer/)
+- [PHPMailer/PHPMailer](https://github.com/PHPMailer/PHPMailer/)
 - [erusev/parsedown](https://github.com/erusev/parsedown)
 - [erusev/parsedown-extra](https://github.com/erusev/parsedown-extra)
 - [twbs/bootstrap](https://github.com/twbs/bootstrap) ([Website](http://getbootstrap.com/)) *(v3.3.2)*
