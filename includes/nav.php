@@ -16,8 +16,8 @@
 								<b><i class="ionicons ion-quote">&nbsp;</i>Actualités</b>
 							</a>
 							<br>
-							<a href="/mu">
-								<b><i class="ionicons ion-map">&nbsp;</i>Meet-ups</b>
+							<a href="/agenda">
+								<b><i class="ionicons ion-calendar">&nbsp;</i>Agenda</b>
 							</a>
 							<br>
 							<a href="/contact">
@@ -54,10 +54,6 @@
 							<br>
 							<a href="http://wiki.asbf.fr">
 								<b><i class="ionicons ion-ios-book">&nbsp;</i>Wiki</b> (+ accès public)
-							</a>
-							<br>
-							<a href="http://forum.asbf.fr">
-								<b><i class="ionicons ion-ios-chatboxes">&nbsp;</i>Forum</b>
 							</a>
 							<br>
 							<a href="http://mail.asbf.fr">
