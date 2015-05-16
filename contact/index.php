@@ -15,20 +15,20 @@ if(!empty($_GET['error'])) $error = urldecode($_GET['error']);
 				<?php
 				if($success) echo '
 					<div class="alert alert-success">
-						<h4>Envoy&eacute; !</h4>
-						<p>Merci pour votre message, il a bien &eacute;t&eacute; envoy&eacute; !</p>
+						<h4>Envoyé !</h4>
+						<p>Merci pour votre message, il a bien été envoyé !</p>
 					</div>
 				';
 				if($bot) echo '
 					<div class="alert alert-warning">
 						<h4>Attention !</h4>
-						<p>Avez-vous bien rempli tout les champs n&eacute;cessaire ?</p>
+						<p>Avez-vous bien rempli tout les champs nécessaire ?</p>
 					</div>
 				';
 				if(!empty($error)) echo '
 					<div class="alert alert-danger">
 						<h4>Oh, erreur !</h4> 
-						<p>Rev&eacute;rifiez votre entr&eacute;e et r&eacute;essayez. <br><i>Au cas-où, voici l\'erreur : '. $error .'</i></p>
+						<p>Revérifiez votre entrée et réessayez. <br><i>Au cas-où, voici l\'erreur : '. $error .'</i></p>
 					</div>
 				';
 				?>
@@ -43,25 +43,25 @@ if(!empty($_GET['error'])) $error = urldecode($_GET['error']);
 									<select class="form-control" id="select" name="select" required>
 										<option value="0" selected disabled>Choisissez...</option>
 										<option value="1">Bureau</option>
-										<option value="2">Secr&eacute;taire</option>
-										<option value="3">Tr&eacute;sorier</option>
+										<option value="2">Secrétaire</option>
+										<option value="3">Trésorier</option>
 										<option value="4">Technique/Webmestre</option>
-										<option value="5">Je ne sais pas ...</option>
+										<option value="5">Je ne sais pas...</option>
 									</select>
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label for="nom" class="col-lg-2 control-label">Nom, Pr&eacute;nom</label>
+								<label for="nom" class="col-lg-2 control-label">Nom, Prénom</label>
 								<div class="col-lg-10">
-									<input type="text" class="form-control" id="nom" name="nom" placeholder="Votre nom et pr&eacute;nom OU votre pseudo" required>
+									<input type="text" class="form-control" id="nom" name="nom" placeholder="Votre nom et prénom OU votre pseudo" required>
 								</div>
 							</div>
 
 							<div class="form-group">
 								<label for="email" class="col-lg-2 control-label">Email</label>
 								<div class="col-lg-10">
-									<input type="email" class="form-control" id="email" name="email" placeholder="Votre email, &agrave; vous, pour vous recontacter" required>
+									<input type="email" class="form-control" id="email" name="email" placeholder="Votre email, à vous, pour vous recontacter" required>
 								</div>
 							</div>
 
