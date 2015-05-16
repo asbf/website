@@ -1,3 +1,6 @@
+<?php
+	date_default_timezone_set('Europe/Paris');
+?>
 <!DOCTYPE html>
 <!-- http://bootswatch.com/cosmo/ -->
 <html lang="fr">
@@ -9,7 +12,7 @@
 	<link rel="stylesheet" href="/css/bootstrap.css" media="screen">
 	<link rel="stylesheet" href="/css/custom.css" media="screen">
 	<link rel="stylesheet" href="/css/ionicons.min.css" media="screen">
-	
+
 	<!-- Madness! -->
 	<link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-icon-60x60.png">
@@ -34,7 +37,7 @@
 <body>
 
 	<div class="container">
-	
+
 		<div class="page-header" id="banner">
 			<div class="row">
 				<div class="col-lg-8 col-md-7 col-sm-6">

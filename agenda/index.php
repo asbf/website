@@ -1,4 +1,4 @@
-<?php 
+<?php
 if(isset($_GET['success'])) $success = 1;
 if(isset($_GET['bot'])) $bot = 1;
 if(!empty($_GET['error'])) $error = urldecode($_GET['error']);
@@ -108,15 +108,15 @@ $md = new ParsedownExtra();
 			<!-- Contenu -->
 			<div class="col-lg-9">
 				<div class="bs-component">
-				
+
 				<?php
-				if($success) echo '
+				if(isset($success)) echo '
 					<div class="alert alert-success">
 						<h4>Envoyé !</h4>
 						<p>Merci pour votre message, il a bien été envoyé !</p>
 					</div>
 				';
-				if($bot) echo '
+				if(isset($bot)) echo '
 					<div class="alert alert-warning">
 						<h4>Attention !</h4>
 						<p>Avez-vous bien rempli tout les champs nécessaire ?</p>
@@ -124,7 +124,7 @@ $md = new ParsedownExtra();
 				';
 				if(!empty($error)) echo '
 					<div class="alert alert-danger">
-						<h4>Oh, erreur !</h4> 
+						<h4>Oh, erreur !</h4>
 						<p>Revérifiez votre entrée et réessayez. <br><i>Au cas-où, voici l\'erreur : '. $error .'</i></p>
 					</div>
 				';
@@ -136,9 +136,9 @@ $md = new ParsedownExtra();
 							<h3 class="panel-title"><strong>AGENDA</strong></h3>
 						</div>
 						<div class="panel-body">
-							
-							<?php 
-							if(empty($get)) { 
+
+							<?php
+							if(empty($get)) {
 								echo'
 							<a href="#proposer" class="btn btn-primary btn-sm"><i class="ionicons ion-lightbulb">&nbsp;</i> Proposer un évènement</a>
 							<p>
@@ -155,7 +155,7 @@ $md = new ParsedownExtra();
 									';
 									$count++;
 								} // fin while
-								
+
 								if($count == 0){
 									echo '
 									<span class="list-group-item">
@@ -163,7 +163,7 @@ $md = new ParsedownExtra();
 									</span>
 									';
 								}
-							} else { 
+							} else {
 								echo '
 							<a href="/agenda/" class="btn btn-primary btn-sm"><i class="ionicons ion-arrow-left-c">&nbsp;</i> Revenir à la liste</a>
 							<div class="agenda">';
@@ -174,9 +174,9 @@ $md = new ParsedownExtra();
 								<div class="desc">'. $md->text($donnees["description"]) .'</div>
 							</div>
 								';
-							} 
+							}
 							?>
-							
+
 						</div>
 					</div>
 
