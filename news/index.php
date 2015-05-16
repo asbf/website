@@ -28,8 +28,8 @@ $md = new ParsedownExtra();
 							<h3 class="panel-title"><strong>ACTUALITÉS</strong></h3>
 						</div>
 						<div class="panel-body">
-							<?php 
-							if(empty($get)) { 
+							<?php
+							if(empty($get)) {
 								echo '
 							<ul class="news">';
 							while ($donnees = $reponse->fetch()) {
@@ -40,7 +40,7 @@ $md = new ParsedownExtra();
 								</li>
 								';
 							} // fin while
-							
+
 							echo '
 							</ul>
 							';
@@ -49,13 +49,13 @@ $md = new ParsedownExtra();
 							<a href="/news/" class="btn btn-primary btn-sm"><i class="ionicons ion-arrow-left-c">&nbsp;</i> Revenir à la liste</a>
 							<div class="news">
 								<span class="date">'. dateHMDMY($donnees["date"]) .'</span>
-								<h4>'. $donnees["titre"] .'</h4>
+								<h1>'. $donnees["titre"] .'</h1>
 								<div class="art">'. $md->text($donnees["article"]) .'</div>
 							</div>
 								';
-							} 
+							}
 							?>
-							
+
 						</div>
 					</div>
 

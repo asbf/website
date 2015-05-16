@@ -28,13 +28,13 @@
 
 					<div class="panel panel-default">
 						<div class="panel-body social">
-							<a href="#">
+							<a href="https://twitter.com/asbf_fr">
 								<b><i class="ionicons ion-social-twitter">&nbsp;</i></b>
 							</a>
 							<a href="https://www.facebook.com/ActionsSolidairesBronyFrancophone">
 								<b><i class="ionicons ion-social-facebook">&nbsp;</i></b>
 							</a>
-							<a href="#">
+							<a href="https://plus.google.com/115060737872961442885/about">
 								<b><i class="ionicons ion-social-googleplus">&nbsp;</i></b>
 							</a>
 							<a href="https://github.com/asbf/">
