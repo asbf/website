@@ -43,7 +43,7 @@ if(!empty($Bot) OR $i < 0) {
     if($SendSelf) $mail->addCC($Email);
     
     $mail->isHTML(true);
-    $mail->Subject = "[". $Subject[$i][1] ."] Message de ". $Name ." <". $Email .">";
+    $mail->Subject = utf8_decode("[". $Subject[$i][1] ."] Message de ". $Name ." <". $Email .">");
     $mail->Body = nl2br($Message);
     $mail->AltBody = $Message;
 
