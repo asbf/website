@@ -40,12 +40,15 @@ require './includes/nav.php';
 								<ul class="news">
 								<?php
 								while ($donnees = $reponse->fetch()) {
+								$postDate = new DateTime($donnees["date"]);
+								if ($postDate < $currentDate) {
 									echo '
 									<li>
 										<span class="title"><a href="/news/?post='. $donnees["slug"] .'">'. $donnees["titre"] .'</a></span>
 										<span class="date">'. dateHMDMY($donnees["date"]) .'</span>
 									</li>
-									';
+										';
+									}
 								} // fin while
 								?>
 								</ul>
