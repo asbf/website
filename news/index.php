@@ -30,15 +30,19 @@ $md = new ParsedownExtra();
 						<div class="panel-body">
 							<?php
 							if(empty($get)) {
+								$currentDate = new DateTime();
 								echo '
 							<ul class="news">';
 							while ($donnees = $reponse->fetch()) {
-								echo '
+								$postDate = new DateTime($donnees["date"]);
+								if ($postDate < $currentDate) {
+									echo '
 								<li>
 									<span class="date">'. dateHMDMY($donnees["date"]) .'</span>
 									<span class="title"><a href="/news/?post='. $donnees["slug"] .'">'. $donnees["titre"] .'</a></span>
 								</li>
-								';
+									';
+								}
 							} // fin while
 
 							echo '
