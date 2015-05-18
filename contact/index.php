@@ -1,6 +1,6 @@
-<?php 
+<?php
 require '../includes/header.php';
-require '../includes/nav.php'; 
+require '../includes/nav.php';
 
 $success = (isset($_GET['success']) ? true : false);
 $bot = (isset($_GET['bot']) ? true : false);
@@ -11,7 +11,7 @@ if(!empty($_GET['error'])) $error = urldecode($_GET['error']);
 			<!-- Contenu -->
 			<div class="col-lg-9">
 				<div class="bs-component">
-				
+
 				<?php
 				if($success) echo '
 					<div class="alert alert-success">
@@ -27,7 +27,7 @@ if(!empty($_GET['error'])) $error = urldecode($_GET['error']);
 				';
 				if(!empty($error)) echo '
 					<div class="alert alert-danger">
-						<h4>Oh, erreur !</h4> 
+						<h4>Oh, erreur !</h4>
 						<p>Revérifiez votre entrée et réessayez. <br><i>Au cas-où, voici l\'erreur : '. $error .'</i></p>
 					</div>
 				';

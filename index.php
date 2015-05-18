@@ -39,6 +39,8 @@ require './includes/nav.php';
 							<p>
 								<ul class="news">
 								<?php
+								$currentDate = new DateTime();
+
 								while ($donnees = $reponse->fetch()) {
 								$postDate = new DateTime($donnees["date"]);
 								if ($postDate < $currentDate) {

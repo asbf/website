@@ -35,13 +35,13 @@ if(!empty($Bot) OR $i < 0) {
     $mail->SMTPAuth = true;
     $mail->Username = $mailUser;
     $mail->Password = $mailPass;
-    
+
     $mail->From = $mailUser;
 	$mail->FromName = 'Contact Web ASBF';
     $mail->addReplyTo($Email, $Name);
     $mail->addAddress($Subject[$i][0], $Subject[$i][1]);
     if($SendSelf) $mail->addCC($Email);
-    
+
     $mail->isHTML(true);
     $mail->Subject = utf8_decode("[". $Subject[$i][1] ."] Message de ". $Name ." <". $Email .">");
     $mail->Body = nl2br($Message);
