@@ -48,19 +48,19 @@
 							<h3 class="panel-title"><strong>ZONE MEMBRES</strong></h3>
 						</div>
 						<div class="panel-body">
-							<a href="http://actions.asbf.fr">
-								<b><i class="ionicons ion-flash">&nbsp;</i>Actions</b> (+ accès public)
-							</a>
-							<br>
 							<a href="http://wiki.asbf.fr">
 								<b><i class="ionicons ion-ios-book">&nbsp;</i>Wiki</b> (+ accès public)
+							</a>
+							<br>
+							<a href="https://app.azendoo.com">
+								<b><i class="ionicons ion-flash">&nbsp;</i>Actions</b>
 							</a>
 							<br>
 							<a href="http://mail.asbf.fr">
 								<b><i class="ionicons ion-email">&nbsp;</i>Webmail</b>
 							</a>
 							<br>
-							<a href="http://visio.asbf.fr">
+							<a href="https://vroom.im/asbf?video=false">
 								<b><i class="ionicons ion-ios-videocam">&nbsp;</i>Visio</b>
 							</a>
 						</div>
