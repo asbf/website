@@ -43,7 +43,7 @@ require '../includes/dbConnect.php';
 							} catch (Exception $e) {
 								die('<div class="alert alert-error"><p>Il a eu une erreur... On a tout pété !</p><div class="well">' . $e->getMessage() .'</div></div>');
 							}
-						} else if(empty($_POST['articleTitle']) OR empty($_POST['articleContent']))  // Si on envoie un article sans titre ou contenu, bah stop.
+						} else if(empty($_POST['articleTitle']) OR empty($_POST['articleContent'])) { // Si on envoie un article sans titre ou contenu, bah stop.
 							echo('<div class="alert alert-error"><p>Titre ou article vide ?</div>');
 						} else if(isset($_POST["edit"])) { // Si on demande à éditer
 							try {
