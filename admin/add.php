@@ -33,6 +33,9 @@ require '../includes/nav.php';
 									</div>
 
 									<div class="form-group">
+										<div class="col-lg-2 col-lg-offset-10">
+											<a onclick="return popitup('/admin/upload/')" href="#" class="btn btn-primary btn-sm"><i class="ionicons ion-android-upload">&nbsp;</i> Upload image</a>
+										</div>
 										<div class="col-lg-11 col-lg-offset-1">
 											<textarea class="form-control" name="articleContent" id="articleContent" rows="15"></textarea>
 											<script>var editor = new Editor(); editor.render();</script>

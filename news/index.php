@@ -35,7 +35,7 @@ $md = new ParsedownExtra();
 							<ul class="news">';
 							while ($donnees = $reponse->fetch()) {
 								$postDate = new DateTime($donnees["date"]);
-								$displayDate = "";
+								$displayDate = ""; // initialiser
 								if($donnees['edited']) $displayDate = "<sup>édité</sup> ";
 								$displayDate .= dateHMDMY($donnees["date"]);
 								if ($postDate < $currentDate) {
@@ -52,6 +52,7 @@ $md = new ParsedownExtra();
 							</ul>
 							';
 							} else {
+								$displayDate = ""; // initialiser
 								if($donnees['edited']) $displayDate = "<sup>édité</sup> ";
 								$displayDate .= dateHMDMY($donnees["date"]);
 								echo '
