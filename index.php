@@ -36,25 +36,23 @@ require './includes/nav.php';
 							<h3 class="panel-title"><strong>DERNIÈRES ACTUALITÉS</strong></h3>
 						</div>
 						<div class="panel-body">
-							<p>
-								<ul class="news">
-								<?php
-								$currentDate = new DateTime();
+							<ul class="news">
+							<?php
+							$currentDate = new DateTime();
 
-								while ($donnees = $reponse->fetch()) {
-								$postDate = new DateTime($donnees["date"]);
-								if ($postDate < $currentDate) {
-									echo '
-									<li>
-										<span class="title"><a href="/news/?post='. $donnees["slug"] .'">'. $donnees["titre"] .'</a></span>
-										<span class="date">'. dateHMDMY($donnees["date"]) .'</span>
-									</li>
-										';
-									}
-								} // fin while
-								?>
-								</ul>
-							</p>
+							while ($donnees = $reponse->fetch()) {
+							$postDate = new DateTime($donnees["date"]);
+							if ($postDate < $currentDate) {
+								echo '
+								<li>
+									<span class="title"><a href="/news/?post='. $donnees["slug"] .'">'. $donnees["titre"] .'</a></span>
+									<span class="date">'. dateHMDMY($donnees["date"]) .'</span>
+								</li>
+									';
+								}
+							} // fin while
+							?>
+							</ul>
 						</div>
 					</div>
 
