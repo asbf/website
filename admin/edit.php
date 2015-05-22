@@ -66,7 +66,7 @@ require '../includes/nav.php';
 						</div>
 					</div>
 
-				</div> <!-- //.bs-component --
+				</div> <!-- //.bs-component -->
 			</div> <!-- //.col-lg-9 -->
 
 <?php require '../includes/footer.php'; ?>
