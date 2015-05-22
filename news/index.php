@@ -1,7 +1,6 @@
 <?php
 if(isset($_GET['post'])) $get = $_GET['post'];
 
-require '../includes/date.php';
 require '../includes/dbConnect.php';
 if(!empty($get)) {
 	$reponse = $bdd->query("SELECT * FROM news WHERE `slug` = '$get'");
@@ -13,6 +12,7 @@ if(!empty($get)) {
 
 require '../includes/header.php';
 require '../includes/nav.php';
+require '../includes/date.php';
 
 require '../includes/parsedown/Parsedown.php';
 require '../includes/parsedown-extra/ParsedownExtra.php';
@@ -35,10 +35,13 @@ $md = new ParsedownExtra();
 							<ul class="news">';
 							while ($donnees = $reponse->fetch()) {
 								$postDate = new DateTime($donnees["date"]);
+								$displayDate = "";
+								if($donnees['edited']) $displayDate = "<sup>édité</sup> ";
+								$displayDate .= dateHMDMY($donnees["date"]);
 								if ($postDate < $currentDate) {
 									echo '
 								<li>
-									<span class="date">'. dateHMDMY($donnees["date"]) .'</span>
+									<span class="date">'. $displayDate .'</span>
 									<span class="title"><a href="/news/?post='. $donnees["slug"] .'">'. $donnees["titre"] .'</a></span>
 								</li>
 									';
@@ -49,12 +52,14 @@ $md = new ParsedownExtra();
 							</ul>
 							';
 							} else {
+								if($donnees['edited']) $displayDate = "<sup>édité</sup> ";
+								$displayDate .= dateHMDMY($donnees["date"]);
 								echo '
 							<a href="/news/" class="btn btn-primary btn-sm"><i class="ionicons ion-arrow-left-c">&nbsp;</i> Revenir à la liste</a>
 							<div class="news">
-								<span class="date">'. dateHMDMY($donnees["date"]) .'</span>
+								<span class="date">'. $displayDate .'</span>
 								<h1>'. $donnees["titre"] .'</h1>
-								<div class="art">'. $md->text($donnees["article"]) .'</div>
+								<div class="art">'. $md->setBreaksEnabled(true)->text($donnees["article"]) .'</div>
 							</div>
 								';
 							}

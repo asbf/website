@@ -4,7 +4,6 @@ if(isset($_GET['bot'])) $bot = 1;
 if(!empty($_GET['error'])) $error = urldecode($_GET['error']);
 if(isset($_GET['post'])) $get = $_GET['post'];
 
-require '../includes/date.php';
 require '../includes/dbConnect.php';
 if(!empty($get)) {
 	$reponse = $bdd->query("SELECT * FROM agenda WHERE `slug` = '$get'");
@@ -16,12 +15,14 @@ if(!empty($get)) {
 
 require '../includes/header.php';
 require '../includes/nav.php';
+require '../includes/date.php';
 
 require '../includes/parsedown/Parsedown.php';
 require '../includes/parsedown-extra/ParsedownExtra.php';
 $md = new ParsedownExtra();
 ?>
 
+			<!-- MODAL -- Petite popup avec le formulaire -->
 			<div class="modal" id="proposer" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content">
@@ -171,7 +172,7 @@ $md = new ParsedownExtra();
 								echo '<h4>'. $donnees['titre'] .'</h4>
 								<span class="date">'. dateToDate($donnees["datestart"], $donnees["dateend"]) .'</span><br
 								<span class="lieu"><b>Lieu :</b> '. $donnees["lieu"] .'</span>
-								<div class="desc">'. $md->text($donnees["description"]) .'</div>
+								<div class="desc">'. $md->setBreaksEnabled(true)->text($donnees["description"]) .'</div>
 							</div>
 								';
 							}

@@ -56,6 +56,10 @@
 	}
 }
 
+.badge a, .badge a:hover {
+	color: #ffffff;
+	text-decoration: none;
+}
 
 #footer {
 	text-align: right;

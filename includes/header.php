@@ -13,6 +13,12 @@
 	<link rel="stylesheet" href="/css/custom.css" media="screen">
 	<link rel="stylesheet" href="/css/ionicons.min.css" media="screen">
 
+	<?php if(isset($markdownEditor)) { ?>
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/editor/0.1.0/editor.css">
+	<script src="//cdn.jsdelivr.net/editor/0.1.0/editor.js"></script>
+	<script src="//cdn.jsdelivr.net/editor/0.1.0/marked.js"></script>
+	<?php } ?>
+
 	<!-- Madness! -->
 	<link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-icon-60x60.png">

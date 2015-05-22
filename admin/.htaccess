@@ -1,0 +1,4 @@
+AuthName "Administration. Présentez vos papiers !"
+AuthType Basic
+AuthUserFile "/home/asbf/.htpasswd"
+Require valid-user
