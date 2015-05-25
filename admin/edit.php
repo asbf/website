@@ -23,12 +23,12 @@ require '../includes/nav.php';
 							<h3 class="panel-title"><a href="/admin/"><i class="ionicons ion-arrow-left-c"></i></a> &nbsp; <strong>ADMIN</strong></h3>
 						</div>
 						<div class="panel-body">
-						
-						    <?php
-                            if(!empty($get)) {
-                            	$reponse = $bdd->query("SELECT * FROM news WHERE `id` = '$get'");
-                            	$donnees = $reponse->fetch();
-                                echo '<form method="post" action="index.php" class="form-horizontal">
+
+							<?php
+							if(!empty($get)) {
+								$reponse = $bdd->query("SELECT * FROM news WHERE `id` = '$get'");
+								$donnees = $reponse->fetch();
+								echo '<form method="post" action="index.php" class="form-horizontal">
 								<fieldset>
 									<legend>Ajouter un article</legend>
 									<div class="form-group">
@@ -58,9 +58,9 @@ require '../includes/nav.php';
 									</div>
 								</fieldset>
 							</form>';
-                            } else {
-                            	echo '<div class="alert alert-error"><p>Aucune informations sur quel article à éditer, retourner en arrière et ré-essayez</p></div>';
-                            }
+							} else {
+								echo '<div class="alert alert-error"><p>Aucune informations sur quel article à éditer, retourner en arrière et ré-essayez</p></div>';
+							}
 							?>
 
 						</div>

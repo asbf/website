@@ -36,8 +36,8 @@ require '../includes/dbConnect.php';
 						</form>
 					</div>';
 					} else {
-                    	echo '<div class="alert alert-error"><p>Aucune informations sur quel article à supprimer, retourner en arrière et ré-essayez</p></div>';
-                    }
+						echo '<div class="alert alert-error"><p>Aucune informations sur quel article à supprimer, retourner en arrière et ré-essayez</p></div>';
+					}
 					?>
 
 				</div> <!-- //.bs-component -->

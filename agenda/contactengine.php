@@ -19,40 +19,40 @@ $SendSelf = Trim(stripslashes($_POST['self']));
 $Message = utf8_decode($Message);
 
 if(!empty($Bot)) {
-    print "<meta http-equiv=\"refresh\" content=\"0;URL=./?bot\">";
+	print "<meta http-equiv=\"refresh\" content=\"0;URL=./?bot\">";
 } else {
-    $mail = new PHPMailer();
-    $mail->isSMTP();
+	$mail = new PHPMailer();
+	$mail->isSMTP();
 	$mail->setLanguage('fr');
 
-    // 0 = off (for production use)
-    // 1 = client messages
-    // 2 = client and server messages
-    $mail->SMTPDebug = 0;
-    $mail->Debugoutput = 'html';
+	// 0 = off (for production use)
+	// 1 = client messages
+	// 2 = client and server messages
+	$mail->SMTPDebug = 0;
+	$mail->Debugoutput = 'html';
 
-    $mail->Host = $mailHost;
-    $mail->Port = $mailPort;
-    $mail->SMTPSecure = 'ssl';
-    $mail->SMTPAuth = true;
-    $mail->Username = $mailUser;
-    $mail->Password = $mailPass;
+	$mail->Host = $mailHost;
+	$mail->Port = $mailPort;
+	$mail->SMTPSecure = 'ssl';
+	$mail->SMTPAuth = true;
+	$mail->Username = $mailUser;
+	$mail->Password = $mailPass;
 
-    $mail->From = $mailUser;
-    $mail->FromName = 'Contact Web ASBF';
-    $mail->addReplyTo($Email, utf8_decode($Name));
-    $mail->addAddress('contac@asbf.fr', 'Contact ASBF');
-    if($SendSelf) $mail->addCC($Email);
+	$mail->From = $mailUser;
+	$mail->FromName = 'Contact Web ASBF';
+	$mail->addReplyTo($Email, utf8_decode($Name));
+	$mail->addAddress('contac@asbf.fr', 'Contact ASBF');
+	if($SendSelf) $mail->addCC($Email);
 
-    $mail->isHTML(true);
-    $mail->Subject = utf8_decode("[Proposition Meet-up] '". $Asso ."' le ". $Date);
-    $mail->Body = nl2br($Message);
-    $mail->AltBody = $Message;
+	$mail->isHTML(true);
+	$mail->Subject = utf8_decode("[Proposition Meet-up] '". $Asso ."' le ". $Date);
+	$mail->Body = nl2br($Message);
+	$mail->AltBody = $Message;
 
-    //send the message, check for errors
-    if (!$mail->send()) {
-        print "<meta http-equiv=\"refresh\" content=\"0;URL=./?error=". urlencode($mail->ErrorInfo) ."\">";
-    } else {
-        print "<meta http-equiv=\"refresh\" content=\"0;URL=./?success\">";
-    }
+	//send the message, check for errors
+	if (!$mail->send()) {
+		print "<meta http-equiv=\"refresh\" content=\"0;URL=./?error=". urlencode($mail->ErrorInfo) ."\">";
+	} else {
+		print "<meta http-equiv=\"refresh\" content=\"0;URL=./?success\">";
+	}
 }
