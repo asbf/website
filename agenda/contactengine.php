@@ -1,5 +1,5 @@
 <?php
-date_default_timezone_set('UTC');
+date_default_timezone_set('Europe/Paris');
 require '../includes/PHPMailer/PHPMailerAutoload.php';
 require '../includes/login.php';
 
@@ -39,13 +39,13 @@ if(!empty($Bot)) {
     $mail->Password = $mailPass;
 
     $mail->From = $mailUser;
-	$mail->FromName = 'Contact Web ASBF';
-    $mail->addReplyTo($Email, $Name);
+    $mail->FromName = 'Contact Web ASBF';
+    $mail->addReplyTo($Email, utf8_decode($Name));
     $mail->addAddress('contac@asbf.fr', 'Contact ASBF');
     if($SendSelf) $mail->addCC($Email);
 
     $mail->isHTML(true);
-    $mail->Subject = "[Proposition Meet-up] '". $Asso ."' le ". $Date;
+    $mail->Subject = utf8_decode("[Proposition Meet-up] '". $Asso ."' le ". $Date);
     $mail->Body = nl2br($Message);
     $mail->AltBody = $Message;
 

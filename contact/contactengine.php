@@ -1,9 +1,9 @@
 <?php
-date_default_timezone_set('UTC');
+date_default_timezone_set('Europe/Paris');
 require '../includes/PHPMailer/PHPMailerAutoload.php';
 require '../includes/logins.php';
 
-$Subject = [['contact@asbf.fr', 'Bureau ASBF'], ['secretaire@asbf.fr', 'Secrétaire ASBF'], ['tresorier@asbf.fr', 'Trésorier ASBF'], ['tech@asbf.fr', 'Technique ASBF'], ['contact@asbf.fr', 'Général ASBF']];
+$SendTo = [['contact@asbf.fr', 'Bureau ASBF'], ['secretaire@asbf.fr', 'Secrétaire ASBF'], ['tresorier@asbf.fr', 'Trésorier ASBF'], ['tech@asbf.fr', 'Technique ASBF'], ['contact@asbf.fr', 'Général ASBF']];
 
 $i = Trim(stripslashes($_POST['select'])) - 1;
 $Name = Trim(stripslashes($_POST['nom']));
@@ -16,7 +16,7 @@ $SendSelf = Trim(stripslashes($_POST['self']));
 
 $Message = utf8_decode($Message);
 
-if(!empty($Bot) OR $i < 0) {
+if(!empty($Bot) || $i < 0 || $i >= sizeof($SendTo)) {
     print "<meta http-equiv=\"refresh\" content=\"0;URL=./?bot\">";
 } else {
     $mail = new PHPMailer();
@@ -37,13 +37,13 @@ if(!empty($Bot) OR $i < 0) {
     $mail->Password = $mailPass;
 
     $mail->From = $mailUser;
-	$mail->FromName = 'Contact Web ASBF';
-    $mail->addReplyTo($Email, $Name);
-    $mail->addAddress($Subject[$i][0], $Subject[$i][1]);
+    $mail->FromName = 'Contact Web ASBF';
+    $mail->addReplyTo($Email, utf8_decode($Name));
+    $mail->addAddress($SendTo[$i][0], utf8_decode($SendTo[$i][1]));
     if($SendSelf) $mail->addCC($Email);
 
     $mail->isHTML(true);
-    $mail->Subject = utf8_decode("[". $Subject[$i][1] ."] Message de ". $Name ." <". $Email .">");
+    $mail->Subject = utf8_decode("[". $SendTo[$i][1] ."] Message de ". $Name ." <". $Email .">");
     $mail->Body = nl2br($Message);
     $mail->AltBody = $Message;
 
