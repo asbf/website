@@ -30,8 +30,8 @@ if(!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] == ""){ // Petit forçage de l
 		init: function() {
 			this.on("success", function(file, serverResp) {
 				var div = document.getElementById('result');
-				div.style.display = 'block';
-				div.innerHTML = div.innerHTML + '<br>' + serverResp;
+				div.style.display = 'block'; // Afficher le div
+				div.innerHTML = div.innerHTML + '<br>' + serverResp; // Afficher le code à insérer
 			});
 		}
 	};

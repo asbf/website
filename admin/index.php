@@ -41,7 +41,7 @@ require '../includes/dbConnect.php';
 								$req->execute();
 								echo '<div class="alert alert-success"><p>Article supprimé !</p></div>';
 							} catch (Exception $e) {
-								die('<div class="alert alert-error"><p>Il a eu une erreur... On a tout pété !</p><div class="well">' . $e->getMessage() .'</div></div>');
+								echo '<div class="alert alert-error"><p>Il a eu une erreur... On a tout pété !</p><div class="well">' . $e->getMessage() .'</div></div>';
 							}
 						} else if(empty($_POST['articleTitle']) OR empty($_POST['articleContent'])) { // Si on envoie un article sans titre ou contenu, bah stop.
 							echo('<div class="alert alert-error"><p>Titre ou article vide ?</div>');
@@ -55,7 +55,7 @@ require '../includes/dbConnect.php';
 								$req->execute();
 								echo '<div class="alert alert-success"><p>Article édité !</p></div>';
 							} catch (Exception $e) {
-								die('<div class="alert alert-error"><p>Il a eu une erreur... On a tout pété !</p><div class="well">' . $e->getMessage() .'</div></div>');
+								echo '<div class="alert alert-error"><p>Il a eu une erreur... On a tout pété !</p><div class="well">' . $e->getMessage() .'</div></div>';
 							}
 						} else { // Sinon dernier cas, bah on envoie l'article :D
 							$slug = slug($_POST['articleTitle']); // Créer le slug
@@ -68,7 +68,7 @@ require '../includes/dbConnect.php';
 								$req->execute();
 								echo '<div class="alert alert-success"><p>Article "<b>'. $_POST['articleTitle'] .'</b>" publié !</p></div>';
 							} catch (Exception $e) {
-								die('<div class="alert alert-error"><p>Il a eu une erreur... On a tout pété !</p><div class="well">' . $e->getMessage() .'</div></div>');
+								echo '<div class="alert alert-error"><p>Il a eu une erreur... On a tout pété !</p><div class="well">' . $e->getMessage() .'</div></div>';
 							}
 						}
 					}

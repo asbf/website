@@ -1,4 +1,4 @@
-AuthName "Administration. Présentez vos papiers !"
+AuthName "Administration, vos papiers !"
 AuthType Basic
 AuthUserFile "/home/asbf/.htpasswd"
 Require valid-user

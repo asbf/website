@@ -8,16 +8,8 @@ if(!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] == ""){ // Petit forçage de l
 }
 
 if(isset($_GET['id'])) $get = $_GET['id'];
-
+$markdownEditor = true;
 require '../includes/dbConnect.php';
-if(!empty($get)) {
-	$reponse = $bdd->query("SELECT * FROM news WHERE `id` = '$get'");
-	$donnees = $reponse->fetch();
-	$markdownEditor = true;
-} else {
-	$reponse = $bdd->query("SELECT * FROM news ORDER BY id DESC");
-}
-
 require '../includes/header.php';
 require '../includes/nav.php';
 ?>
@@ -31,37 +23,45 @@ require '../includes/nav.php';
 							<h3 class="panel-title"><a href="/admin/"><i class="ionicons ion-arrow-left-c"></i></a> &nbsp; <strong>ADMIN</strong></h3>
 						</div>
 						<div class="panel-body">
-
-							<form method="post" action="index.php" class="form-horizontal">
+						
+						    <?php
+                            if(!empty($get)) {
+                            	$reponse = $bdd->query("SELECT * FROM news WHERE `id` = '$get'");
+                            	$donnees = $reponse->fetch();
+                                echo '<form method="post" action="index.php" class="form-horizontal">
 								<fieldset>
 									<legend>Ajouter un article</legend>
 									<div class="form-group">
 										<label for="articleTitle" class="col-lg-1 control-label">Titre</label>
 										<div class="col-lg-11">
 											<input type="text" class="form-control" name="articleTitle" id="articleTitle" maxlength="50" required
-											placeholder="Titre de l'article" value="<?php echo $donnees['titre']; ?>">
+											placeholder="Titre de l\'article" value="'. $donnees['titre'] .'">
 										</div>
 									</div>
 
 									<div class="form-group">
 										<div class="col-lg-2 col-lg-offset-10">
-											<a onclick="return popitup('/admin/upload/')" href="#" class="btn btn-primary btn-sm"><i class="ionicons ion-android-upload">&nbsp;</i> Upload image</a>
+											<a onclick="return popitup(\'/admin/upload/\')" href="#" class="btn btn-primary btn-sm"><i class="ionicons ion-android-upload">&nbsp;</i> Upload image</a>
 										</div>
 										<div class="col-lg-11 col-lg-offset-1">
-											<textarea class="form-control" name="articleContent" id="articleContent" rows="15"><?php echo $donnees['article']; ?></textarea>
+											<textarea class="form-control" name="articleContent" id="articleContent" rows="15">'. $donnees['article'] .'</textarea>
 											<script>var editor = new Editor(); editor.render();</script>
 										</div>
 									</div>
 
 									<div class="form-group">
 										<div class="col-lg-11 col-lg-offset-1">
-											<input type="hidden" style="display: none;" name="articleID" value="<?php echo $get;  ?>"/>
+											<input type="hidden" style="display: none;" name="articleID" value="'. $get .'"/>
 											<input type="hidden" style="display: none;" name="edit" value="1"/>
 											<button type="submit" class="btn btn-primary">Envoyer</button>
 										</div>
 									</div>
 								</fieldset>
-							</form>
+							</form>';
+                            } else {
+                            	echo '<div class="alert alert-error"><p>Aucune informations sur quel article à éditer, retourner en arrière et ré-essayez</p></div>';
+                            }
+							?>
 
 						</div>
 					</div>
