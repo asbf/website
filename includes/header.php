@@ -11,6 +11,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="/css/bootstrap.css" media="screen">
 	<link rel="stylesheet" href="/css/custom.css" media="screen">
+	<link rel="stylesheet" href="/css/ponyfrance.css" media="screen">
 	<link rel="stylesheet" href="/css/ionicons.min.css" media="screen">
 
 	<?php if(isset($markdownEditor)) { ?>
@@ -41,6 +42,8 @@
 </head>
 
 <body>
+
+	<script src="https://ponyfrance.net/i/pony-france.js"></script>
 
 	<div class="container">
 
