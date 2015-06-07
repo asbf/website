@@ -79,6 +79,10 @@ div#count {
   content: "Au total";
 }
 
+.total:after {
+    content: "vies sauvées";
+}
+
 /* Info */
 section.info {
 	max-width: 1000px;
