@@ -60,6 +60,25 @@ div#count {
 	padding: 50px;
 }
 
+.total {
+    font-size: 6em;
+    font-weight: 400;
+    color: rgb(230, 0, 60);
+    line-height: 1em;
+}
+
+.total:before, .total:after {
+    display: block;
+    font-weight: 300;
+    font-size: 0.5em;
+    line-height: 1em;
+    color: rgb(0, 132, 203);
+}
+
+.total:before {
+  content: "Au total";
+}
+
 /* Info */
 section.info {
 	max-width: 1000px;
