@@ -2,24 +2,9 @@
 if(isset($_GET['success'])) $success = 1;
 if(isset($_GET['bot'])) $bot = 1;
 if(!empty($_GET['error'])) $error = urldecode($_GET['error']);
-if(isset($_GET['post'])) $get = $_GET['post'];
-
-require '../includes/dbConnect.php';
-if(!empty($get)) {
-	$reponse = $bdd->query("SELECT * FROM agenda WHERE `slug` = '$get'");
-	$donnees = $reponse->fetch();
-	$subTitle = $donnees["titre"];
-} else {
-	$reponse = $bdd->query("SELECT * FROM agenda WHERE dateend >= CURDATE() ORDER BY datestart ASC");
-}
 
 require '../includes/header.php';
 require '../includes/nav.php';
-require '../includes/date.php';
-
-require '../includes/parsedown/Parsedown.php';
-require '../includes/parsedown-extra/ParsedownExtra.php';
-$md = new ParsedownExtra();
 ?>
 
 			<!-- MODAL -- Petite popup avec le formulaire -->
@@ -137,47 +122,17 @@ $md = new ParsedownExtra();
 							<h3 class="panel-title"><strong>AGENDA</strong></h3>
 						</div>
 						<div class="panel-body">
-
-							<?php
-							if(empty($get)) {
-								echo'
 							<a href="#proposer" class="btn btn-primary btn-sm"><i class="ionicons ion-lightbulb">&nbsp;</i> Proposer un évènement</a>
-							<p>
-								<div class="list-group agenda">';
-								$count = 0;
-								while($donnees = $reponse->fetch()) {
-									echo '
-									<a href="?post='. $donnees["slug"] .'" class="list-group-item">';
-										if(!empty($donnees['img'])) echo '<img class="image" src="'. $donnees["img"] .'">';
-										echo '<h4 class="list-group-item-heading">'. $donnees["titre"] .'</h4>
-										<p class="list-group-item-text date">'. dateToDate($donnees["datestart"], $donnees["dateend"]) .'</p>
-										<p class="list-group-item-text lieu"><b>Lieu :</b> '. $donnees["lieu"] .'</p>
-									</a>
-									';
-									$count++;
-								} // fin while
+							<div class="list-group agenda">
 
-								if($count == 0){
-									echo '
-									<span class="list-group-item">
-										<h4 class="list-group-item-heading">Aucun évènement futur prévu (pour l\'instant)</h4>
-									</span>
-									';
-								}
-							} else {
-								echo '
-							<a href="/agenda/" class="btn btn-primary btn-sm"><i class="ionicons ion-arrow-left-c">&nbsp;</i> Revenir à la liste</a>
-							<div class="agenda">';
-								if(!empty($donnees['img'])) echo '<img class="image" src="'. $donnees['img'] .'">';
-								echo '<h4>'. $donnees['titre'] .'</h4>
-								<span class="date">'. dateToDate($donnees["datestart"], $donnees["dateend"]) .'</span><br
-								<span class="lieu"><b>Lieu :</b> '. $donnees["lieu"] .'</span>
-								<div class="desc">'. $md->setBreaksEnabled(true)->text($donnees["description"]) .'</div>
+								<?php
+								// Read from the cache, see cron.php
+								$cacheFileCal = fopen("../cache/events.html", "r") or dir("Pas possible de voir la liste pour le moment :(");
+								echo fread($cacheFileCal, filesize("../cache/events.html"));
+								fclose($cacheFileCal);
+								?>
+
 							</div>
-								';
-							}
-							?>
-
 						</div>
 					</div>
 
