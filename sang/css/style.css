@@ -27,17 +27,16 @@ p {
 }
 
 /* Header */
-header img#logo {
-	width: 200px;
-}
-
 header {
 	width: 100%;
-	display: block;
 	text-align: center;
-	padding: 20px;
+	padding: 20px 0;
 	border-bottom: 1px solid rgb(229, 229, 255);
 	margin-bottom: 1em;
+}
+
+header img#logo {
+	width: 200px;
 }
 
 /* Intro */
