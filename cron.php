@@ -35,6 +35,11 @@ foreach ($events->getItems() as $event) {
 		$eventDateStart = $event->start->date;
 	}
 
+	if(empty($eventDateEnd)) { // If there isn't any end time..
+		// MAYBE it's an all day event
+		$eventDateEnd = $event->end->date;
+	}
+
 	$gcal .= '<div class="list-group-item">
 									<h4 class="list-group-item-heading">'. $event->summary .'</h4>
 									<p class="list-group-item-text date">'. dateToDate($eventDateStart, $eventDateEnd) .'</p>
