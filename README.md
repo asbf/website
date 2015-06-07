@@ -4,6 +4,12 @@ Site web de l'ASBF.
 
 ---
 
+### Pour les contributeurs au git
+Renommez `includes/logins.exemple.php` en `includes/logins.php` et éditez-le avec votre configuration.
+
+Un cron est nécessaire pour la page "Agenda".
+`0 * * * * /usr/bin/php /var/www/asbf/cron.php >/dev/null 2>&1`
+
 ### Ressources
 - [PHPMailer/PHPMailer](https://github.com/PHPMailer/PHPMailer/)
 - [erusev/parsedown](https://github.com/erusev/parsedown)
