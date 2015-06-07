@@ -15,7 +15,7 @@ function dateToDate($firstDate, $secondDate) {
 	} elseif (is_null($secondDate)) {
 		return "<b>Dès</b> ". date("d/m/Y H:i", strtotime($firstDate));
 	} else if (date("H:i", strtotime($firstDate)) == "00:00" && date("H:i", strtotime($secondDate)) == "00:00") {
-		return "<b>Du</b> ". date("d/m/Y", strtotime($firstDate)) .' <b>au</b> '. date("d/m/Y", strtotime($secondDate));
+		return "<b>Du</b> ". date("d/m/Y", strtotime($firstDate)) .' <b>au</b> '. date("d/m/Y", strtotime('-1 day', strtotime($secondDate)));
 	} else {
 		return "<b>Du</b> ". date("d/m/Y H:i", strtotime($firstDate)) .' <b>au</b> '. date("d/m/Y H:i", strtotime($secondDate));
 	}
