@@ -16,7 +16,7 @@
 								<b><i class="ionicons ion-quote">&nbsp;</i>Actualités</b>
 							</a>
 							<br>
-							<a href="/agenda">
+							<a href="http://wiki.asbf.fr/wiki/asbf/agenda">
 								<b><i class="ionicons ion-calendar">&nbsp;</i>Agenda</b>
 							</a>
 							<br>
@@ -43,16 +43,18 @@
 						</div>
 					</div>
 
+					<a href="http://wiki.asbf.fr/wiki/asbf/accueil" class="btn btn-primary">Rejoindre l'association</a>
+
 					<div class="panel panel-danger">
 						<div class="panel-heading">
 							<h3 class="panel-title"><strong>ZONE MEMBRES</strong></h3>
 						</div>
 						<div class="panel-body">
 							<a href="http://wiki.asbf.fr">
-								<b><i class="ionicons ion-ios-book">&nbsp;</i>Wiki</b> (+ accès public)
+								<b><i class="ionicons ion-ios-book">&nbsp;</i>Wiki</b>
 							</a>
 							<br>
-							<a href="https://app.azendoo.com">
+							<a href="http://actions.asbf.fr">
 								<b><i class="ionicons ion-flash">&nbsp;</i>Actions</b>
 							</a>
 							<br>
