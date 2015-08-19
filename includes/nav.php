@@ -43,7 +43,7 @@
 						</div>
 					</div>
 
-					<a href="http://wiki.asbf.fr/wiki/asbf/accueil" class="btn btn-primary">Rejoindre l'association</a>
+					<a href="http://wiki.asbf.fr/wiki/asbf/accueil" class="btn btn-primary rejoindre">Rejoindre l'association</a>
 
 					<div class="panel panel-danger">
 						<div class="panel-heading">
