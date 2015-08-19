@@ -31,7 +31,7 @@
 							<a href="https://twitter.com/asbf_fr">
 								<b><i class="ionicons ion-social-twitter">&nbsp;</i></b>
 							</a>
-							<a href="https://www.facebook.com/ActionsSolidairesBronyFrancophone">
+							<a href="https://www.facebook.com/ASBF.FR">
 								<b><i class="ionicons ion-social-facebook">&nbsp;</i></b>
 							</a>
 							<a href="https://plus.google.com/115060737872961442885/about">
