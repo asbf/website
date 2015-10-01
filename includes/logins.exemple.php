@@ -1,20 +1,17 @@
 <?php
 
 // Emails
-$mailUser = "";
-$mailPass = "";
-$mailHost = "";
-$mailPort = "";
+$mailUser = ""; // ex: website@asbf.fr
+$mailPass = ""; // Mot de passe de l'emails
+$mailHost = ""; // Serveur web mail
+$mailPort = ""; // Port SMTP
 
 // Database
-$dbUser = "";
-$dbPass = "";
-$dbHost = "";
-$dbName = "";
+$dbUser = ""; // Utilisateur BDD
+$dbPass = ""; // Mot de passe de l'utilisateur
+$dbHost = ""; // Serveur (normalement "localhost")
+$dbName = ""; // Nom de la base de donnée
 
 // Administration (mini-site "sang")
 $user = "";
 $password = "";
-
-// Google Developers Console <https://console.developers.google.com/>
-$gcalAPI = "";

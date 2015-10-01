@@ -7,6 +7,3 @@
 [submodule "includes/PHPMailer"]
 	path = includes/PHPMailer
 	url = https://github.com/PHPMailer/PHPMailer/
-[submodule "includes/google-api-php-client"]
-	path = includes/google-api-php-client
-	url = https://github.com/google/google-api-php-client
