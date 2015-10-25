@@ -16,7 +16,7 @@ if (isset($_POST['nu'])) {
     if($n == 0) {
         $e = $bdd->prepare("INSERT INTO `users` (`login`,`mail`,`pass`,`rank`) VALUES(?,?,?,?)");
         $e->execute(array($login,$mail,$hmdp,$rank));
-        mail($mail, "[ASBF] compte admin", "Utilisateur : ".$login." mdp : ".$mdp,"FROM: contact@asbf.fr");
+        mail($mail, "[ASBF] compte admin", "Utilisateur : ".$login." \n Mot de passe : ".$mdp,"FROM: contact@asbf.fr");
         $ok = "ok ";
     } else {
         $error = "Nom d'utilisateur ou mail déjà pris";

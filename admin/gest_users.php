@@ -13,7 +13,7 @@ if (isset($_POST["mdp"])) {
 
     $mdp = random(5);
 
-    mail($mail, "[ASBF] compte admin", "Changemement de mot de passe : Utilisateur : ".$login." mdp : ".$mdp,"FROM: contact@asbf.fr");
+    mail($mail, "[ASBF] compte admin", "Changement de mot de passe. \n Utilisateur : ".$login." \n Mot de passe : ".$mdp,"FROM: contact@asbf.fr");
 
     $hmdp = hashMdp($mdp);
 

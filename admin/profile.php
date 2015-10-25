@@ -17,7 +17,7 @@ if(isset($_POST["nmdp"])) {
             $error = "Les deux mot de passes sont pas identique";
         }
     } else {
-        $error = "Ancien mot de passe incorect";
+        $error = "Ancien mot de passe incorrect";
     }
 
 }
@@ -28,7 +28,7 @@ if (isset($_POST['m'])) {
     $m = $bdd->prepare("UPDATE `users` SET `mail` = ? WHERE `login` = ?");
     $m->execute(array($email,$data["login"]));
 
-    $ook = "Mail changer (rechargez pour voir les changements)";
+    $ook = "Mail changé (rechargez pour voir les changements)";
 }
 
 ?>
@@ -43,7 +43,7 @@ if (isset($_POST['m'])) {
             <div class="row">
                 <center><h1><?php echo $data["login"]; ?></h1></center>
 
-                <h2>changer email</h2>
+                <h2>Changer email</h2>
                 <span style="color:green;"><?php echo $ook; ?></span>
                 <form role="form" method="POST" action="">
                    <div class="form-group">
