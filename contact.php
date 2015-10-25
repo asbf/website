@@ -9,7 +9,7 @@ if (isset($_POST['m'])) {
     //$msg = htmlspecialchars($msg);
     //CONTINUER LES MAILS
 
-    if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $mail)) // On filtre les serveurs qui présentent des bogues. {
+    if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $mail)) { // On filtre les serveurs qui présentent des bogues.
         $passage_ligne = "\r\n";
     } else {
         $passage_ligne = "\n";
