@@ -1,73 +1,61 @@
-<?php
-require './includes/date.php';
-require './includes/dbConnect.php';
-$reponse = $bdd->query("SELECT * FROM news ORDER BY id DESC LIMIT 3");
-
-require './includes/header.php';
-require './includes/nav.php';
-?>
-
-			<!-- Contenu -->
-			<div class="col-lg-9">
-				<div class="bs-component">
-
-					<div class="panel panel-success">
-						<div class="panel-heading">
-							<h3 class="panel-title"><strong>BIENVENUE</strong></h3>
-						</div>
-						<div class="panel-body">
-							<p>
-								<b>Actions Solidaires Brony Francophone</b> (ASBF) est une association dont l’objectif est l’organisation d’actions solidaires diverses. Son ambition est d’apporter une aide humaine aux autres, ainsi que d’aider à la prise de conscience de chacun envers ces actions par la diffusion d’informations.<br>
-								<br>
-								Son nom a pour origine la communauté Brony. Cette association s’inspire de <a target="_blank" href="http://broniesforgood.org/">Bronies for Good</a>, (association solidaire basée aux États-Unis), et couvre quant à elle la zone francophone. L’ASBF est partenaire de Bronies for Good depuis sa création, avec pour objectif des actions humanitaires internationales.
-							</p>
-							<p>
-								Pour tout contact, vous pouvez nous envoyer un mail à <noscript>contact [~at~] asbf.fr</noscript>
-								<script type="text/javascript">
-								// Email obfuscator script 2.1 by Tim Williams, University of Arizona http://www.jottings.com/obfuscator/
-								for(coded="lhIR9lR@9d5S.SN",key="Une20aJSvmY3qgHsICLp9bcT87jKoDdzPOBk5lW64GthQrxMFEVuyAfZwRX1Ni",shift=coded.length,link="",i=0;i<coded.length;i++)-1==key.indexOf(coded.charAt(i))?(ltr=coded.charAt(i),link+=ltr):(ltr=(key.indexOf(coded.charAt(i))-shift+key.length)%key.length,link+=key.charAt(ltr));document.write("<a href='mailto:"+link+"'>contact [~at~] asbf.fr</a>");
-								</script>
-							</p>
-						</div>
-					</div>
-
-					<div class="panel panel-primary">
-						<div class="panel-heading">
-							<h3 class="panel-title"><strong>DERNIÈRES ACTUALITÉS</strong></h3>
-						</div>
-						<div class="panel-body">
-							<ul class="news">
-							<?php
-							$currentDate = new DateTime();
-
-							while ($donnees = $reponse->fetch()) {
-							$postDate = new DateTime($donnees["date"]);
-							if ($postDate < $currentDate) {
-								echo '
-								<li>
-									<span class="title"><a href="/news/?post='. $donnees["slug"] .'">'. $donnees["titre"] .'</a></span>
-									<span class="date">'. dateHMDMY($donnees["date"]) .'</span>
-								</li>
-									';
-								}
-							} // fin while
-							?>
-							</ul>
-						</div>
-					</div>
-
-					<!--<div class="panel panel-info">
-						<div class="panel-heading">
-							<h3 class="panel-title"><strong>PARTENAIRES</strong></h3>
-						</div>
-						<div class="panel-body">
-							<p>
-								Lorem ipsum dolor sit amet
-							</p>
-						</div>
-					</div>-->
-
-				</div> <!-- //.bs-component -->
-			</div> <!-- //.col-lg-9 -->
-
-<?php require './includes/footer.php'; ?>
+<?php include 'pages/header.php'; ?>
+        <div class="col-lg-3">
+            <div class="panel panel-primary">
+                <ul class="nav">
+                    <br />
+                    <center>
+                        <span><a href="https://twitter.com/asbf_fr" target="_blank"><i class="fa fa-twitter-square fa-3x">&nbsp;&nbsp;</i></a></span>
+                        <span><a href="https://www.facebook.com/ASBF.FR" target="_blank"><i class="fa fa-facebook-square fa-3x">&nbsp;&nbsp;</i></a></span>
+                        <span><a href="https://plus.google.com/115060737872961442885/about" target="_blank"><i class="fa fa-google-plus-square fa-3x">&nbsp;&nbsp;</i></a></span>
+                        <span><a href="https://github.com/asbf/" target="_blank"><i class="fa fa-github-square fa-3x"></i></a></span>
+                    </center>
+                    <br />
+                    <li><a href="actualites.php"><i class="fa fa-comments"></i> Actualités</a></li>
+                    <li><a href="contact.php"><i class="fa fa-envelope-o"></i> Contact</a></li>
+                    <li><a href="http://wiki.asbf.fr/wiki/asbf/agenda"><i class="fa fa-calendar"></i> Agenda</a></li>
+                </ul>
+                <br />
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading"><i class="fa fa-users"></i><b>&nbsp;> Espace membres</b></div>
+                <ul class="nav">
+                    <br />
+                    <li><a href="http://pad.asbf.fr/"><i class="fa fa-sticky-note"></i> Pad</a></li>
+                    <li><a href="http://wiki.asbf.fr/"><i class="fa fa-book"></i> Wiki</a></li>
+                    <li><a href="https://app.azendoo.com/"><i class="fa fa-tasks"></i> Tâches</a></li>
+                    <li><a href="http://mail.asbf.fr/"><i class="fa fa-paper-plane"></i> Serveur mail</a></li>
+                </ul>
+                <br />
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-info"></i><strong>&nbsp;> Accueil</strong></h3>
+                </div>
+                <div class="panel-body">
+                    <div align="justify">
+                        <strong>Actions Solidaires Brony Francophone</strong> est une association dont l'objectif est la <b>création</b> de rencontres et d'actions dans le but de <b>sensibiliser</b> le public à des associations caritatives et de <b>promouvoir</b> leurs actions. Son ambition est d’apporter une <b>aide humaine aux autres</b>, ainsi que d’aider à la prise de conscience de chacun envers ces actions par la diffusion d’informations.<br><br>Son nom a pour origine la communauté <abbr title="Fans modernes de My Little Pony">brony</abbr>. Cette association s’inspire de <a href="http://broniesforgood.org" target="_blank">Bronies for Good</a>. L’association est partenaire avec nous depuis sa création, avec pour objectif des actions <b>humanitaires internationales</b>.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-comments"></i><strong>&nbsp;> Dernières actualités</strong></h3>
+                </div>
+                <div class="panel-body">
+                <?php
+                $sa = $bdd->query("SELECT * FROM `news` ORDER BY `id` DESC LIMIT 0,5");
+                while($dsa=$sa->fetch()) {
+                    $date = date("d/m/Y", strtotime($dsa['datefr']));
+                ?>
+                    <div>
+                        <span><a href="actualites.php?id=<?php echo $dsa['id']; ?>"><?php echo $dsa['titre'] ?></a></span><span style="float:right"><?php echo $date; ?></span>
+                    </div>
+                <?php } ?>
+                </div>
+            </div>
+        </div>
+<?php include("pages/footer.php"); ?>

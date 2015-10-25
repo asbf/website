@@ -2,7 +2,7 @@
 session_start();
 isset($_SESSION['logged']) ? : $_SESSION['logged'] = false;
 require("asbf.class.php");
-require("../includes/logins.php");
+require("logins.php");
 ?>
 <!DOCTYPE html>
 <html>

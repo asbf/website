@@ -4,19 +4,16 @@ Site web de l'ASBF.
 
 ---
 
-### Pour les contributeurs au git
+## Pour les développeurs
 
-- Récupérez une copie du site avec `git clone --recursive https://github.com/asbf/website` (notez le **`--recursive`**).
-- Importez `asbf.sql` dans votre SGDB MySQL.
-- Renommez `includes/logins.exemple.php` en `includes/logins.php` et éditez-le avec votre configuration.
-
-
-### Ressources
-
-- [PHPMailer/PHPMailer](https://github.com/PHPMailer/PHPMailer/)
-- [erusev/parsedown](https://github.com/erusev/parsedown)
-- [erusev/parsedown-extra](https://github.com/erusev/parsedown-extra)
-- [enyo/dropzone](https://github.com/erusev/enyo/dropzone) ([Website](http://www.dropzonejs.com/)) *(v4.0.1)*
-- [twbs/bootstrap](https://github.com/twbs/bootstrap) ([Website](http://getbootstrap.com/)) *(v3.3.2)*
-- [thomaspark/bootswatch - Cosmo](https://github.com/thomaspark/bootswatch/tree/gh-pages/cosmo) ([Website](http://bootswatch.com/cosmo/)) *(v3.3.2)*
-- [driftyco/ionicons](https://github.com/driftyco/ionicons) ([Website](http://ionicons.com/)) *(v2.0.1)*
+- Récupérez une copie du site avec git:
+  ```bash
+  git clone https://github.com/asbf/website
+  ```
+- Créez une base de donnée MySQL "asbf" et importez le schéma `asbf.sql`
+- **Copiez** `admin/pages/config.dist.php` + `sang/logins.dist.php` vers `admin/pages/config.php` + `sang/logins.php`
+- Remplissez les deux fichiers avec les bonnes informations de connexion, et obtenez une copie de la fonction `random()` chez un développeur actuel
+- Accédez à `http://<SERVER_PROJET>/admin` et connectez vous en `root` avec le mot de passe `AgM4j98j`.
+  + Créez-vous un utilisateur sous l'option "Nouveau utilisateur" en rôle "Admin". Vous recevrez un mail avec votre mot de passe random.
+  + Dans "Gestion des utilisateurs", cliquez sur "Changer MDP" sur root. Ceci va *jetter* le mot de passe par défaut.
+- Déconnectez-vous. C'est prêt.

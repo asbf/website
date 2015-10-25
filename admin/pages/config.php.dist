@@ -1,0 +1,36 @@
+<?php
+//BDD MySql
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+$srv = 'localhost'; //adresse du serveur (localhost si inconu)
+$user = 'root'; //Nom d'utilisateur MySql (root si inconu)
+$pass  = ''; //Mot de passe MySQL
+$db = 'asbf'; //Base de donnée
+$port = '3306'; //Port MySql (3306 par defaut)
+
+//////NE PAS TOUCHER ICI////////////////////////////////////////////////////////////////////////////////////
+
+try {
+    $bdd = new PDO('mysql:host='.$srv.';port='.$port.';dbname='.$db, $user, $pass);
+} catch(PDOException $e) {
+    echo 'Erreur : '.$e->getMessage().'<br />';
+    echo 'N° : '.$e->getCode();
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function random($car) {
+    $string = "";
+    $chaine = "abcdefghijklmnpqrstuvwxy1234567890";
+    srand((double)microtime()*1000000);
+    for($i=0; $i<$car; $i++) {
+        $string .= $chaine[rand()%strlen($chaine)];
+    }
+    return $string;
+}
+
+function hashMdp($mdp) {
+    /* FONCTION PRIVEE -- DEMANDER AUX DEVS LA DERNIERE VERSION */
+    die('Fonction "hashMdp()" à ajouter au config.php admin');
+}
+
+?>
