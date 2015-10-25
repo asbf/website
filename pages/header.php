@@ -1,3 +1,4 @@
+<?php include 'admin/pages/config.php'; ?>
 <!DOCTYPE html>
 <html>
 <head>
