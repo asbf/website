@@ -136,6 +136,21 @@ INSERT INTO `users` (`id`, `login`, `mail`, `pass`, `rank`) VALUES
 (1, 'root', 'tech@asbf.fr', '49aad4740978d886f3a5c5e3c358e03dd9ba394f77a14477b4b193cfb42a30bc766aef29e296c91c9a292abfec7d69681a666431', 1);
 
 --
+-- Structure de la table `collecte`
+--
+
+CREATE TABLE IF NOT EXISTS `collecte` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `lieu` varchar(32) COLLATE utf8_bin NOT NULL,
+  `description` text COLLATE utf8_bin NOT NULL,
+  `adresse` varchar(256) COLLATE utf8_bin NOT NULL,
+  `heure_debut` time NOT NULL,
+  `heure_fin` time NOT NULL,
+  `resultat` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+
+--
 -- Contraintes pour les tables exportées
 --
 
