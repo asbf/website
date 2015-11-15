@@ -4,9 +4,12 @@ $ok = NULL;
 $error = NULL;
 
 if (isset($_POST['nu'])) {
-    extract($_POST);
+    
+    $mail = htmlspecialchars($_POST["mail"]);
+    $login = htmlspecialchars($_POST["login"]);
+    $rank = htmlspecialchars($_POST["rank"]);
 
-    $mdp = random(5);
+    $mdp = random(10);
     $hmdp = hashMdp($mdp);
 
     $s = $bdd->prepare("SELECT * FROM `users` WHERE `login` = ? OR `mail` = ?");

@@ -2,9 +2,10 @@
 include("pages/header.php");
 $msg = NULL;
 if (isset($_POST['news'])) {
-    extract($_POST);
-    $titre = htmlspecialchars($titre);
-    //$article = htmlspecialchars($article);
+    
+    $titre = htmlspecialchars($_POST["titre"]);
+    $article = $_POST["article"];
+    $auteur = $_POST["auteur"];
 
     $n = $bdd->prepare("INSERT INTO `news` (`titre`,`auteur`,`datefr`,`article`) VALUES(?,?,NOW(),?)");
     $n->execute(array($titre,$auteur,$article));

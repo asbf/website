@@ -2,7 +2,9 @@
 include("pages/header.php");
 
 if (isset($_POST["del"])) {
-    extract($_POST);
+     
+    $id = htmlspecialchars($_POST["id"]);  
+
     $d = $bdd->prepare("DELETE FROM `offre` WHERE `id` = ?");
     $d->execute(array($id));
 }

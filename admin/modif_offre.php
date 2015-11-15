@@ -13,7 +13,12 @@ if (!isset($_GET["id"]) || empty($_GET['id'])) {
 $ok = NULL;
 $error = NULL;
 if (isset($_POST['o'])) {
-    extract($_POST);
+
+    $titre = htmlspecialchars($_POST["titre"]);
+    $region = $_POST["region"];
+    $desc = htmlspecialchars($_POST["desc"]);
+    $link = htmlspecialchars($_POST["link"]);
+
                 $offre = $bdd->prepare("UPDATE `offre` SET `titre` = ?, `region` = ?, `desc` = ?, `link` = ? WHERE id = ?");
                 $offre->execute(array($titre,$region,$desc,$link,$gid));
                 $ok = "Ok !";

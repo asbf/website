@@ -4,14 +4,15 @@ session_start();
 include 'pages/config.php';
 $error = NULL;
 if (isset($_POST["log"])) {
-    extract($_POST);
+   
+   $login = htmlspecialchars($_POST["login"]);
+   $pass = htmlspecialchars($_POST["pass"]);
 
     $s = $bdd->prepare("SELECT * FROM `users` WHERE `login`= ?");
     $s->execute(array($login));
     $ds=$s->fetch();
 
     if ($ds["pass"] == hashMdp($pass)) {
-        echo "ok";
 
         $_SESSION["login"] = $login;
         header("location: index.php");

@@ -2,14 +2,17 @@
 include("pages/header.php");
 
 if (isset($_POST["sup"])) {
-    extract($_POST);
+    $id = htmlspecialchars($_POST["id"]);
 
     $d = $bdd->prepare("DELETE FROM `users` WHERE id = ?");
     $d->execute(array($id));
 }
 
 if (isset($_POST["mdp"])) {
-    extract($_POST);
+    
+    $login = htmlspecialchars($_POST["login"]);
+    $id = htmlspecialchars($_POST["id"]);
+    $mail = htmlspecialchars($_POST["mail"]);
 
     $mdp = random(5);
 

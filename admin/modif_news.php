@@ -13,11 +13,12 @@ if (empty($_GET["id"]) || !isset($_GET["id"])) {
 $msg = NULL;
 if (isset($_POST['news'])) {
     extract($_POST);
-    $titre = htmlspecialchars($titre);
-    //$article = htmlspecialchars($article);
+    $titre = htmlspecialchars($_POST["titre"]);
+    $auteur = $_POST["auteur"];
+    $article = $_POST["artocle"];
 
     $n = $bdd->prepare("UPDATE `news` SET `titre` = ?, `auteur` = ?, `article` = ? WHERE `id` = ?");
-    $n->execute(array($titre,$auteur,$articl,$gid));
+    $n->execute(array($titre,$auteur,$article,$gid));
 
     $msg = "Ok !";
 }

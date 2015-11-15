@@ -5,7 +5,10 @@ $error = NULL;
 $ok = NULL;
 $ook = NULL;
 if(isset($_POST["nmdp"])) {
-    extract($_POST);
+
+    $old = htmlspecialchars($_POST["old"]);
+    $newone htmlspecialchars($_POST["newone"]);
+    $newtwo htmlspecialchars($_POST["newtwo"]);
 
     if(hashMdp($old) == $data['pass']) {
         if ($newone == $newtwo) {
@@ -24,6 +27,8 @@ if(isset($_POST["nmdp"])) {
 
 if (isset($_POST['m'])) {
     extract($_POST);
+
+    $email = htmlspecialchars($_POST["email"]);
 
     $m = $bdd->prepare("UPDATE `users` SET `mail` = ? WHERE `login` = ?");
     $m->execute(array($email,$data["login"]));

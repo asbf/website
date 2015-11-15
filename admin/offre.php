@@ -3,7 +3,12 @@ include("pages/header.php");
 $ok = NULL;
 $error = NULL;
 if (isset($_POST['o'])) {
-    extract($_POST);
+
+    $titre = $_POST["titre"];
+    $region = $_POST["region"];
+    $desc = htmlspecialchars($_POST["desc"]);
+    $link = htmlspecialchars($_POST["link"]);
+
     $ext = strrchr($_FILES["monfichier"]["name"],'.');
     $img = random(50).''.$ext;
 

@@ -5,9 +5,10 @@ include 'pages/config.php';
 $error = NULL;
 
 if (isset($_POST['mdp'])) {
-    extract($_POST);
 
-    $mdp = random(5);
+    $mail = htmlspecialchars($_POST["mail"]);
+
+    $mdp = random(10);
     $hmdp = hashMdp($mdp);
 
     $chmdp = $bdd->prepare("UPDATE `users` SET `pass` = ? WHERE `mail` = ?");
