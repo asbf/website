@@ -2,8 +2,9 @@
 include 'pages/header.php';
 
 if(isset($_GET["id"]) && !empty($_GET["id"])){
-    $s = $bdd->query("SELECT * FROM `news` WHERE id ='".$_GET['id']."'");
-    $nbr=$s->rowCount();
+    $s = $bdd->prepare("SELECT * FROM `news` WHERE id = :actuid");
+    $s->execute( array('actuid' => $_GET["id"]) );
+    $ds = $s->fetch();
 }
 
 ?>
@@ -22,24 +23,22 @@ if(isset($_GET["id"]) && !empty($_GET["id"])){
                         </div>
                 <?php
                     }
-                } elseif($nbr==0){
+                } elseif(empty($ds["article"])){
                     header('location: erreur.php');
                 } else {
-                    while ($ds=$s->fetch()) {
                         $dsate = date("d/m/Y", strtotime($ds['datefr']));
                 ?>
 
-                        <!-- TODO: check car wtf -->
-                        <h2><b><?php echo $ds["titre"]; ?></b></h2>
-                        <hr />
-                        <div>
-                            <span class="text-primary"><b><?php echo $ds["auteur"] ?></b></span>
-                            <span class="text-primary" style="float:right;" ><b><?php echo $dsate; ?></b></span>
-                        </div>
-                        <br />
-                        <?php
-                        echo $ds["article"]. "<br />";
-                    }
+                    <!-- TODO: check car wtf -->
+                    <h2><b><?php echo $ds["titre"]; ?></b></h2>
+                    <hr />
+                    <div>
+                        <span class="text-primary"><b><?php echo $ds["auteur"] ?></b></span>
+                        <span class="text-primary" style="float:right;" ><b><?php echo $dsate; ?></b></span>
+                    </div>
+                    <br />
+                    <?php
+                    echo $ds["article"]. "<br />";
                 }
                 ?>
                 <br />
