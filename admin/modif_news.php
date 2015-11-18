@@ -1,26 +1,24 @@
 <?php
-include("pages/header.php");
-$gid = $_GET["id"];
 
-if (empty($_GET["id"]) || !isset($_GET["id"])) {
-?>
-        <script type="text/javascript">
-            document.location.href='index.php';
-        </script>
-<?php
+require_once __DIR__ . '/pages/header.php';
+
+$gid = $_GET['id'];
+
+if (empty($_GET['id']) || !isset($_GET['id'])) {
+    header('Location: index.php');
 }
 
 $msg = NULL;
+
 if (isset($_POST['news'])) {
     extract($_POST);
-    $titre = htmlspecialchars($_POST["titre"]);
-    $auteur = $_POST["auteur"];
-    $article = $_POST["artocle"];
+    $titre = htmlspecialchars($_POST['titre']);
+    $auteur = $_POST['auteur'];
+    $article = $_POST['article'];
 
-    $n = $bdd->prepare("UPDATE `news` SET `titre` = ?, `auteur` = ?, `article` = ? WHERE `id` = ?");
-    $n->execute(array($titre,$auteur,$article,$gid));
+    $bdd->execute('UPDATE news SET titre = :titre, auteur = :auteur, article = :article WHERE id = :id', [':titre' => $titre, ':auteur' => $auteur, ':article' => $article, ':id' => $gid]);
 
-    $msg = "Ok !";
+    $msg = 'Ok !';
 }
 
 ?>
@@ -50,16 +48,12 @@ if (isset($_POST['news'])) {
         <div id="page-wrapper">
             <div class="container-fluid">
             <?php
-            $sn = $bdd->prepare("SELECT * FROM `news` WHERE id = ?");
-            $sn->execute(array($gid));
-            $dsn=$sn->fetch();
-            $nnb=$sn->rowCount();
-            if ($nnb==0) {
+            $data = $bdd->queryOne('SELECT * FROM news WHERE id = :id', [':id' => $gid]);
+
+            if ($data === null) {
+                header('Location: index.php');
+            }
             ?>
-            <script type="text/javascript">
-                document.location.href='index.php';
-            </script>
-            <?php } ?>
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
@@ -67,19 +61,19 @@ if (isset($_POST['news'])) {
                             <small>Actu ASBF <a href="gest_news.php">Gérer les news</a></small>
                         </h1>
                     </div>
-                    <span style="color:green"><?php echo $msg; ?></span>
+                    <span style="color:green"><?= $msg ?></span>
                     <form method="POST" action="">
                         <div class="form-group">
                             <label>Titre</label>
-                            <input type="text" name="titre" value="<?php echo $dsn['titre'] ?>" class="form-control">
+                            <input type="text" name="titre" value="<?= $data->titre ?>" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Auteur</label>
-                            <input type="text" value="<?php echo $data["login"]; ?>" class="form-control" disabled>
-                            <input type="hidden" value="<?php echo $data["login"]; ?>" name="auteur" class="form-control">
+                            <input type="text" value="<?= $user->login ?>" class="form-control" disabled>
+                            <input type="hidden" value="<?= $user->login ?>" name="auteur" class="form-control">
                         </div>
                         <div class="form-group">
-                            <textarea rows="12" class="form-control" id="elm1" name="article"><?php echo $dsn["article"] ?></textarea>
+                            <textarea rows="12" class="form-control" id="elm1" name="article"><?= $data->article ?></textarea>
                         </div>
                         <input type="submit" name="news" class="btn btn-success" value="Nouvelle actu">
                     </form>

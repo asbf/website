@@ -1,27 +1,25 @@
 <?php
-include("pages/header.php");
 
-if (isset($_POST["sup"])) {
-    $id = htmlspecialchars($_POST["id"]);
+require_once __DIR__ . '/pages/header.php';
 
-    $d = $bdd->prepare("DELETE FROM `users` WHERE id = ?");
-    $d->execute(array($id));
+if (isset($_POST['sup'])) {
+    $id = htmlspecialchars($_POST['id']);
+
+    $bdd->execute('DELETE FROM users WHERE id = :id', [':id' => $id]);
 }
 
-if (isset($_POST["mdp"])) {
-    
-    $login = htmlspecialchars($_POST["login"]);
-    $id = htmlspecialchars($_POST["id"]);
-    $mail = htmlspecialchars($_POST["mail"]);
+if (isset($_POST['mdp'])) {
+    $login = htmlspecialchars($_POST['login']);
+    $id = htmlspecialchars($_POST['id']);
+    $mail = htmlspecialchars($_POST['mail']);
 
-    $mdp = random(5);
+    $mdp = Password::random(5);
 
-    mail($mail, "[ASBF] compte admin", "Changement de mot de passe. \n Utilisateur : ".$login." \n Mot de passe : ".$mdp,"FROM: contact@asbf.fr");
+    mail($mail, '[ASBF] Compte admin', "Changement de mot de passe. \n Utilisateur : $login\n Mot de passe : $mdp", 'FROM: contact@asbf.fr');
 
-    $hmdp = hashMdp($mdp);
+    $hmdp = Password::hash($mdp);
 
-    $d = $bdd->prepare("UPDATE `users` SET `pass` = ? WHERE id = ?");
-    $d->execute(array($hmdp,$id));
+    $bdd->execute('UPDATE users SET pass = :pass WHERE id = :id', [':pass' => $hmdp, ':id' => $id]);
 }
 
 ?>
@@ -51,27 +49,27 @@ if (isset($_POST["mdp"])) {
                 </thead>
                 <tbody>
                 <?php
-                $su = $bdd->query("SELECT * FROM `users` WHERE `login` <> 'root'");
+                $data = $bdd->query('SELECT * FROM users WHERE login <> \'root\'');
 
-                while ($du = $su->fetch()) {
+                foreach ($data as $row):
                 ?>
                     <tr>
-                        <td><?php echo $du["login"] ?></td>
-                        <td><?php echo $du["mail"] ?></td>
+                        <td><?= $row->login ?></td>
+                        <td><?= $row->mail ?></td>
                         <td>
                             <form class="lb" method="POST" action="">
-                                <input type="hidden" name="id" value="<?php echo $du["id"]; ?>">
+                                <input type="hidden" name="id" value="<?= $row->id ?>">
                                 <input type="submit" value="Suprimer" name="sup" class="btn btn-danger">
                             </form>
                             <form class="lb" method="POST" action="">
-                                <input type="hidden" name="login" value="<?php echo $du["login"]; ?>">
-                                <input type="hidden" name="id" value="<?php echo $du["id"]; ?>">
-                                <input type="hidden" name="mail" value="<?php echo $du["mail"]; ?>">
+                                <input type="hidden" name="login" value="<?= $row->login ?>">
+                                <input type="hidden" name="id" value="<?= $row->id ?>">
+                                <input type="hidden" name="mail" value="<?= $row->mail ?>">
                                 <input type="submit" value="Changer MDP" name="mdp" class="btn btn-primary">
                             </form>
                         </td>
                     </tr>
-                <?php } ?>
+                <?php endforeach ?>
                 </tbody>
               </table>
             </div>

@@ -1,14 +1,17 @@
 <?php
-session_start();
-include("config.php");
 
-if (!isset($_SESSION["login"]) || empty($_SESSION["login"])) {
-    header('location: login.php');
+session_start();
+
+require_once __DIR__ . '/../../core/security/Password.php';
+require_once __DIR__ . '/../../core/database/PDODriver.php';
+
+if (!isset($_SESSION['login']) || empty($_SESSION['login'])) {
+    header('Location: login.php');
+    die();
 }
 
-$req = $bdd->prepare("SELECT * FROM `users` WHERE `login` = ?");
-$req->execute(array($_SESSION["login"]));
-$data=$req->fetch();
+$bdd = PDODriver::getDriver();
+$user = $bdd->queryOne('SELECT * FROM users WHERE login = :login', [':login' => $_SESSION['login']]);
 
 ?>
 <!DOCTYPE html>
@@ -82,7 +85,7 @@ $data=$req->fetch();
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo  $data["login"]; ?> <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?= $user->login ?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="profile.php"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -107,15 +110,13 @@ $data=$req->fetch();
                         <li>
                              <a href="news.php"><i class="fa fa-newspaper-o fa-fw"></i> News</a>
                         </li>
-                        <?php
-                        if ($data["rank"] == 1) {
-                        ?>
+                        <?php if ($user->rank == 1): ?>
                         <hr />
                         <li>
                              <a href="newuser.php"><i class="fa fa-user fa-fw"></i> Nouveau utilisateur</a>
                              <a href="gest_users.php"><i class="fa fa-user fa-fw"></i> Gestion des utilisateurs</a>
                         </li>
-                        <?php } ?>
+                        <?php endif ?>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

@@ -1,10 +1,10 @@
 <?php
-include("pages/header.php");
 
-if (isset($_POST["del"])) {
-    $id = htmlspecialchars($_POST["id"]);
-    $d = $bdd->prepare("DELETE FROM `news` WHERE `id` = ?");
-    $d->execute(array($id));
+require_once __DIR__ . '/pages/header.php';
+
+if (isset($_POST['del'])) {
+    $id = htmlspecialchars($_POST['id']);
+    $bdd->execute('DELETE FROM news WHERE id = :id', [':id' => $id]);
 }
 
 ?>
@@ -28,21 +28,21 @@ if (isset($_POST["del"])) {
                     </thead>
                     <tbody>
                     <?php
-                    $o = $bdd->query("SELECT * FROM `news` ORDER BY `id` DESC");
+                    $data = $bdd->query('SELECT * FROM news ORDER BY id DESC');
 
-                    while ($do=$o->fetch()) {
-                        $date = date("d/m/Y", strtotime($do["datefr"]));
+                    foreach ($data as $row):
+                        $date = date('d/m/Y', strtotime($row->datefr));
                     ?>
                         <tr>
-                            <td><?php echo $do["titre"]; ?></td><td><?php echo $do["auteur"]; ?></td><td><?php echo $date; ?></td><td>
+                            <td><?= $row->titre ?></td><td><?= $row->auteur ?></td><td><?= $date; ?></td><td>
                                 <form method="POST" action="">
-                                    <input type="hidden" name="id" value="<?php echo $do["id"]; ?>">
+                                    <input type="hidden" name="id" value="<?= $row->id ?>">
                                     <input type="submit" name="del" value="Suprimer" class="btn btn-danger">
                                 </form>
-                                <a href="modif_news.php?id=<?php echo $do["id"]; ?>"><button class="btn btn-primary">Modifier</button></a>
+                                <a href="modif_news.php?id=<?= $row->id ?>"><button class="btn btn-primary">Modifier</button></a>
                             </td>
                         </tr>
-                    <?php } ?>
+                    <?php endforeach ?>
                 </tbody>
             </table>
             </div>

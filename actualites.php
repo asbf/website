@@ -1,10 +1,9 @@
 <?php
-include 'pages/header.php';
 
-if(isset($_GET["id"]) && !empty($_GET["id"])){
-    $s = $bdd->prepare("SELECT * FROM `news` WHERE id = :actuid");
-    $s->execute( array('actuid' => $_GET["id"]) );
-    $ds = $s->fetch();
+require_once __DIR__ . '/pages/header.php';
+
+if(isset($_GET['id']) && !empty($_GET['id'])){
+    $news = $bdd->queryOne('SELECT * FROM news WHERE id = :id', [':id' => $_GET['id']]);
 }
 
 ?>
@@ -13,35 +12,36 @@ if(isset($_GET["id"]) && !empty($_GET["id"])){
             <div class="panel-body">
                 <br />
                 <?php
-                if (empty($_GET["id"]) || !isset($_GET["id"])) {
-                    $sa = $bdd->query("SELECT * FROM `news` ORDER BY `id` DESC");
-                    while($dsa=$sa->fetch()) {
-                        $date = date("d/m/Y", strtotime($dsa['datefr']));
-                ?>
+                if (empty($_GET['id']) || !isset($_GET['id'])):
+                    header('Location: index.php');
+                else:
+                    $data = $bdd->query('SELECT * FROM news ORDER BY id DESC');
+                    foreach ($data as $row):
+                        $date = date('d/m/Y', strtotime($row->datefr));
+                        ?>
                         <div>
-                            <span><a href="actualites.php?id=<?php echo $dsa['id']; ?>"><?php echo $dsa['titre']; ?></a></span><span style="float:right"><?php echo $date; ?></span>
+                            <span><a href="actualites.php?id=<?= $row->id ?>"><?= $row->titre ?></a></span><span style="float:right"><?= $date ?></span>
                         </div>
-                <?php
-                    }
-                } elseif(empty($ds["article"])){
-                    header('location: erreur.php');
-                } else {
-                        $dsate = date("d/m/Y", strtotime($ds['datefr']));
-                ?>
-
-                    <!-- TODO: check car wtf -->
-                    <h2><b><?php echo $ds["titre"]; ?></b></h2>
-                    <hr />
-                    <div>
-                        <span class="text-primary"><b><?php echo $ds["auteur"] ?></b></span>
-                        <span class="text-primary" style="float:right;" ><b><?php echo $dsate; ?></b></span>
-                    </div>
-                    <br />
                     <?php
-                    echo $ds["article"]. "<br />";
-                }
-                ?>
+                        if(empty($row->article)):
+                            header('Location: erreur.php');
+                        else:
+                            $dsate = date('d/m/Y', strtotime($row->datefr));
+                            ?>
+                            <!-- TODO: check car wtf -->
+                            <h2><b><?= $row->titre ?></b></h2>
+                            <hr />
+                            <div>
+                                <span class="text-primary"><b><?= $row->auteur ?></b></span>
+                                <span class="text-primary" style="float:right;" ><b><?= $dsate ?></b></span>
+                            </div>
+                            <br />
+                            <?php
+                            echo $row->article . '<br/>';
+                        endif;
+                    endforeach;
+                endif ?>
                 <br />
             </div>
         </div>
-<?php include("pages/footer.php"); ?>
+<?php include_once __DIR__ . '/pages/footer.php' ?>

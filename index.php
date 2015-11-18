@@ -1,4 +1,8 @@
-<?php include 'pages/header.php'; ?>
+<?php
+require_once __DIR__ . '/core/database/PDODriver.php';
+require_once __DIR__ . '/core/security/Password.php';
+require_once __DIR__ . '/pages/header.php';
+?>
         <div class="col-lg-3">
             <div class="panel panel-primary">
                 <ul class="nav">
@@ -47,15 +51,15 @@
                 </div>
                 <div class="panel-body">
                 <?php
-                $sa = $bdd->query("SELECT * FROM `news` ORDER BY `id` DESC LIMIT 0,5");
-                while($dsa=$sa->fetch()) {
-                    $date = date("d/m/Y", strtotime($dsa['datefr']));
+                $data = $bdd->query('SELECT * FROM news ORDER BY id DESC LIMIT 0, 5');
+                foreach ($data as $row):
+                    $date = date('d/m/Y', strtotime($row->datefr));
                 ?>
                     <div>
-                        <span><a href="actualites.php?id=<?php echo $dsa['id']; ?>"><?php echo $dsa['titre'] ?></a></span><span style="float:right"><?php echo $date; ?></span>
+                        <span><a href="actualites.php?id=<?= $row->id ?>"><?= $row->titre ?></a></span><span style="float:right"><?= $date ?></span>
                     </div>
-                <?php } ?>
+                <?php endforeach ?>
                 </div>
             </div>
         </div>
-<?php include("pages/footer.php"); ?>
+<?php include_once __DIR__ . '/pages/footer.php'; ?>

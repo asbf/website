@@ -1,4 +1,4 @@
-<?php include("pages/header.php"); ?>
+<?php require_once __DIR__ . '/pages/header.php'; ?>
         <div class="panel panel-default">
             <div class="panel-body">
                 <div align="justify">
@@ -147,4 +147,4 @@
                 </div>
             </div>
         </div>
-<?php include("pages/footer.php"); ?>
+<?php include_once __DIR__ . '/pages/footer.php'; ?>

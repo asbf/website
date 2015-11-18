@@ -1,34 +1,36 @@
 <?php
-include("pages/header.php");
+
+require_once __DIR__ . '/pages/header.php';
+
 $ok = NULL;
 $error = NULL;
+
 if (isset($_POST['o'])) {
 
-    $titre = $_POST["titre"];
-    $region = $_POST["region"];
-    $desc = htmlspecialchars($_POST["desc"]);
-    $link = htmlspecialchars($_POST["link"]);
+    $titre = $_POST['titre'];
+    $region = $_POST['region'];
+    $desc = htmlspecialchars($_POST['desc']);
+    $link = htmlspecialchars($_POST['link']);
 
-    $ext = strrchr($_FILES["monfichier"]["name"],'.');
-    $img = random(50).''.$ext;
+    $ext = strrchr($_FILES['monfichier']['name'],'.');
+    $img = Password::random(50) . '' . $ext;
 
-    if ($_FILES["monfichier"]["error"]== 0) {
-        if ($_FILES["monfichier"]["size"] <= 1000000000) {
+    if ($_FILES['monfichier']['error']== 0) {
+        if ($_FILES['monfichier']['size'] <= 1000000000) {
             if ($ext == '.jpg' || $ext == '.jpeg' || $ext == '.png' || $ext == '.gif') {
-                $offre = $bdd->prepare("INSERT INTO `offre` (`titre`,`region`,`desc`,`link`,`photo`) VALUES(?,?,?,?,?)");
-                $offre->execute(array($titre,$region,$desc,$link,$img));
+                $bdd->execute('INSERT INTO offre (titre, region, `desc`, link, photo) VALUES(:titre, :region, :desc, :link, :img)', [':titre' => $titre, ':region' => $region, ':desc' => $desc, ':link' => $link, ':img' => $img]);
 
-                move_uploaded_file($_FILES["monfichier"]["tmp_name"], "imgs/offres/".$img);
+                move_uploaded_file($_FILES['monfichier']['tmp_name'], 'imgs/offres/' . $img);
 
-                $ok = "Ok !";
+                $ok = 'Ok !';
             } else{
-                $error = "Extention non supportée";
+                $error = 'Extention non supportée';
             }
         } else {
-            $error = "fichier trop gros";
+            $error = 'fichier trop gros';
         }
     } else {
-        $error = "Une erreur (fichier) est survenue";
+        $error = 'Une erreur (fichier) est survenue';
     }
 }
 
@@ -68,7 +70,7 @@ if (isset($_POST['o'])) {
                     </div>
                 </div>
                 <!-- /.row -->
-                <span style="color:red"><?php echo $error; ?></span><span style="color:green"><?php echo $ok; ?></span>
+                <span style="color:red"><?= $error ?></span><span style="color:green"><?= $ok ?></span>
                 <form role="form" action="" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                         <label>Titre</label>
@@ -111,7 +113,7 @@ if (isset($_POST['o'])) {
                         <input type="file" name="monfichier" required>
                     </div>
                     <div class="form-group">
-                        <label>lien</label>
+                        <label>Lien</label>
                         <input class="form-control" type="link" name="link" required>
                     </div>
                     <input type="submit" class="btn btn-success" value="Nouvelle offre" name="o">

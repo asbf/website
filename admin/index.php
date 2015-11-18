@@ -1,5 +1,5 @@
 <?php
-include("pages/header.php")
+require_once __DIR__ . '/pages/header.php';
 ?>
          <div id="page-wrapper">
             <div class="row">
@@ -12,10 +12,8 @@ include("pages/header.php")
             <div class="row">
                 <p>Actions Solidaires des Brony Francophone !</p>
                 <?php
-                $ns = $bdd->query("SELECT COUNT(*) As cn FROM news");
-                $nds=$ns->fetch();
-                $os = $bdd->query("SELECT COUNT(*) As co FROM offre");
-                $ods=$os->fetch();
+                $nds = $bdd->queryOne('SELECT COUNT(*) As cn FROM news');
+                $ods = $bdd->queryOne('SELECT COUNT(*) As co FROM offre');
                  ?>
                 <div class="col-lg-3 col-md-6">
                     <div class="panel panel-green">
@@ -25,7 +23,7 @@ include("pages/header.php")
                                     <i class="fa fa-newspaper-o fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge"><?php echo $nds['cn']; ?></div>
+                                    <div class="huge"><?= $nds->cn ?></div>
                                     <div>News</div>
                                 </div>
                             </div>
@@ -40,7 +38,7 @@ include("pages/header.php")
                                     <i class="fa fa-street-view fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge"><?php echo $ods['co']; ?></div>
+                                    <div class="huge"><?= $ods->co ?></div>
                                     <div>Offres</div>
                                 </div>
                             </div>

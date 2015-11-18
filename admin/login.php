@@ -1,29 +1,30 @@
 <?php
+
 session_start();
 
-include 'pages/config.php';
+require_once __DIR__ . '/../core/security/Password.php';
+require_once __DIR__ . '/../core/database/PDODriver.php';
+
 $error = NULL;
-if (isset($_POST["log"])) {
-   
-   $login = htmlspecialchars($_POST["login"]);
-   $pass = htmlspecialchars($_POST["pass"]);
+$bdd = PDODriver::getDriver();
 
-    $s = $bdd->prepare("SELECT * FROM `users` WHERE `login`= ?");
-    $s->execute(array($login));
-    $ds=$s->fetch();
+if (isset($_POST['log'])) {
+    $login = htmlspecialchars($_POST['login']);
+    $pass = htmlspecialchars($_POST['pass']);
 
-    if ($ds["pass"] == hashMdp($pass)) {
+    $user = $bdd->queryOne('SELECT * FROM users WHERE login = :login', [':login' => $login]);
 
-        $_SESSION["login"] = $login;
-        header("location: index.php");
+    if ($user->pass === Password::hash($pass)) {
+        $_SESSION['login'] = $login;
+        header('Location: index.php');
     } else {
-        $error = "Utilisateur ou mot de passe incorect";
+        $error = 'Utilisateur ou mot de passe incorrect';
     }
 }
 
-if (isset($_SESSION["login"])) {
-    header("location: index.php");
-} else {
+if (isset($_SESSION['login'])):
+    header('Location: index.php');
+else:
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -90,7 +91,7 @@ if (isset($_SESSION["login"])) {
                                 <input name="log" type="submit" class="btn btn-lg btn-success btn-block" value="Login">
                             </fieldset>
                         </form>
-                        <p><a href="forgot.php">mot de passe oublié</a></p><span style="color:red"><?php echo $error; ?></span>
+                        <p><a href="forgot.php">mot de passe oublié</a></p><span style="color:red"><?= $error ?></span>
                     </div>
                 </div>
             </div>
@@ -98,4 +99,4 @@ if (isset($_SESSION["login"])) {
     </div>
 </body>
 </html>
-<?php  }?>
+<?php endif ?>

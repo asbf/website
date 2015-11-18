@@ -1,18 +1,20 @@
 <?php
-include 'pages/header.php';
 
-if (empty($_GET["r"]) && !isset($_GET["r"]) ) {
-    $msg = "Aucune région définie";
+require_once __DIR__ . '/pages/header.php';
+
+$so = [];
+
+if (empty($_GET['r']) && !isset($_GET['r']) ) {
+    $msg = 'Aucune région définie';
 } else {
-    $so = $bdd->query("SELECT * FROM `offre` WHERE region='".$_GET["r"]."'");
-    $nbr=$so->rowCount();
-    if ($nbr==0) {
-        $msg = "Aucune offre disponible";
-    } else {
-        $l = $bdd->query("SELECT * FROM `region` WHERE id = '".$_GET["r"]."'");
-        $dl = $l->fetch();
+    $so = $bdd->query('SELECT * FROM offre WHERE region = :region', [':region' => $_GET['r']]);
 
-        $msg = "il y a : ".$nbr." offres en ".$dl["libelle"];
+    if (empty($so)) {
+        $msg = 'Aucune offre disponible';
+    } else {
+        $dl = $bdd->queryOne('SELECT * FROM region WHERE id = :id', [':id' => $_GET['r']]);
+
+        $msg = 'il y a : ' . count($so) . ' offres en ' . $dl->libelle;
     }
 }
 
@@ -27,26 +29,26 @@ if (empty($_GET["r"]) && !isset($_GET["r"]) ) {
             </div>
         </div>
         <div class="col-lg-8">
-            <?php echo $msg; ?>
+            <?= $msg ?>
             <div class="row">
             <?php
-            if (!empty($_GET["r"]) && isset($_GET["r"]) && $nbr>0) {
-                while ($dso=$so->fetch()) {
-            ?>
+            if (!empty($_GET['r']) && isset($_GET['r']) && count($so) > 0):
+                foreach ($so as $dso):
+                ?>
                 <div class="col-sm-6 col-md-4">
                     <div class="thumbnail">
-                        <img src="admin/imgs/offres/<?php echo $dso['photo']; ?>" alt="photo" width="243px" hight="200px">
+                        <img src="admin/imgs/offres/<?= $dso->photo ?>" alt="photo" width="243px" hight="200px">
                         <div class="caption">
-                            <h3><?php echo $dso['titre']; ?></h3>
-                            <p><?php echo $dso['desc']; ?></p>
-                            <p><a href="<?php echo $dso['link']; ?>" class="btn btn-primary" role="button">Lien</a></p>
+                            <h3><?= $dso->titre ?></h3>
+                            <p><?= $dso->desc ?></p>
+                            <p><a href="<?= $dso->link ?>" class="btn btn-primary" role="button">Lien</a></p>
                         </div>
                     </div>
                 </div>
             <?php
-                }
-            }
+                endforeach;
+            endif;
             ?>
             </div>
         </div>
-<?php include("pages/footer.php"); ?>
+<?php include_once __DIR__ . '/pages/footer.php'; ?>

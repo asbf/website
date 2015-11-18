@@ -1,25 +1,27 @@
- <?php
+<?php
+
 session_start();
 
-include 'pages/config.php';
+require_once __DIR__ . '/../core/security/Password.php';
+require_once __DIR__ . '/../core/database/PDODriver.php';
+
 $error = NULL;
 
 if (isset($_POST['mdp'])) {
+    $mail = htmlspecialchars($_POST['mail']);
 
-    $mail = htmlspecialchars($_POST["mail"]);
+    $mdp = Password::random(10);
+    $hmdp = Password::hash($mdp);
 
-    $mdp = random(10);
-    $hmdp = hashMdp($mdp);
+    $bdd = PDODriver::getDriver();
+    $bdd->execute('UPDATE users SET pass = :pass WHERE mail = :mail', [':pass' => $hmdp, ':mail' => $mail]);
 
-    $chmdp = $bdd->prepare("UPDATE `users` SET `pass` = ? WHERE `mail` = ?");
-    $chmdp->execute(array($hmdp,$mail));
-
-    mail($mail, "[ASBF] compte admin", "Changemement de mot de passe : mdp : ".$mdp,"FROM: contact@asbf.fr");
+    mail($mail, '[ASBF] compte admin', 'Changemement de mot de passe : mdp : ' . $mdp, 'FROM: contact@asbf.fr');
 }
 
-if (isset($_SESSION["login"])) {
-    header("location: index.php");
-} else {
+if (isset($_SESSION['login'])):
+    header('Location: index.php');
+else:
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -81,7 +83,7 @@ if (isset($_SESSION["login"])) {
                                 <input name="mdp" type="submit" class="btn btn-lg btn-success btn-block" value="Envoyer">
                             </fieldset>
                         </form>
-                        <p><a href="login.php">Connexion</a></p><span style="color:red"><?php echo $error; ?></span>
+                        <p><a href="login.php">Connexion</a></p><span style="color:red"><?= $error ?></span>
                     </div>
                 </div>
             </div>
@@ -89,4 +91,4 @@ if (isset($_SESSION["login"])) {
     </div>
 </body>
 </html>
-<?php } ?>
+<?php endif ?>

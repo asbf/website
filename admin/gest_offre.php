@@ -1,12 +1,13 @@
 <?php
-include("pages/header.php");
 
-if (isset($_POST["del"])) {
-     
-    $id = htmlspecialchars($_POST["id"]);  
+require_once __DIR__ . '/pages/header.php';
 
-    $d = $bdd->prepare("DELETE FROM `offre` WHERE `id` = ?");
-    $d->execute(array($id));
+$bdd = PDODriver::getDriver();
+
+if (isset($_POST['del'])) {
+    $id = htmlspecialchars($_POST['id']);
+
+    $bdd->execute('DELETE FROM offre WHERE id = :id', [':id' => $id]);
 }
 
 ?>
@@ -53,21 +54,21 @@ if (isset($_POST["del"])) {
                     </thead>
                     <tbody>
                     <?php
-                    $o = $bdd->query("SELECT * FROM `offre` as `o`,`region` as `r` WHERE `r`.`id` = `o`.`region`");
+                    $data = $bdd->query('SELECT * FROM offre as o, region as r WHERE r.id = o.region');
 
-                    while ($do=$o->fetch()) {
-                        $ido = $do[0];
+                    foreach ($data as $row):
+                        $ido = $data[0]->id;
                     ?>
                         <tr>
-                            <td><?php echo $do["titre"]; ?></td><td><?php echo $do["libelle"]; ?></td><td>
+                            <td><?= $row->titre ?></td><td><?= $row->libelle ?></td><td>
                                 <form method="POST" action="">
-                                    <input type="hidden" name="id" value="<?php echo $ido; ?>">
+                                    <input type="hidden" name="id" value="<?= $ido ?>">
                                     <input type="submit" name="del" value="Suprimer" class="btn btn-danger">
                                 </form>
-                                <a href="modif_offre.php?id=<?php echo $ido; ?>"><button class="btn btn-primary">Mofifier</button></a>
+                                <a href="modif_offre.php?id=<?= $ido ?>"><button class="btn btn-primary">Mofifier</button></a>
                             </td>
                         </tr>
-                    <?php } ?>
+                    <?php endforeach ?>
                 </tbody>
             </table>
             </div>

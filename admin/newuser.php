@@ -1,28 +1,27 @@
-<?php include 'pages/header.php';
+<?php
+
+require_once __DIR__ . '/pages/header.php';
 
 $ok = NULL;
 $error = NULL;
 
 if (isset($_POST['nu'])) {
-    
-    $mail = htmlspecialchars($_POST["mail"]);
-    $login = htmlspecialchars($_POST["login"]);
-    $rank = htmlspecialchars($_POST["rank"]);
 
-    $mdp = random(10);
-    $hmdp = hashMdp($mdp);
+    $mail = htmlspecialchars($_POST['mail']);
+    $login = htmlspecialchars($_POST['login']);
+    $rank = htmlspecialchars($_POST['rank']);
 
-    $s = $bdd->prepare("SELECT * FROM `users` WHERE `login` = ? OR `mail` = ?");
-    $s->execute(array($login,$mail));
-    $n=$s->rowCount();
+    $mdp = Password::random(10);
+    $hmdp = Password::hash($mdp);
 
-    if($n == 0) {
-        $e = $bdd->prepare("INSERT INTO `users` (`login`,`mail`,`pass`,`rank`) VALUES(?,?,?,?)");
-        $e->execute(array($login,$mail,$hmdp,$rank));
-        mail($mail, "[ASBF] compte admin", "Utilisateur : ".$login." \n Mot de passe : ".$mdp,"FROM: contact@asbf.fr");
-        $ok = "ok ";
+    $data = $bdd->query('SELECT * FROM users WHERE login = :login OR mail = :mail', [':login' => $login, ':mail' => $mail]);
+
+    if(empty($data)) {
+        $bdd->execute('INSERT INTO users (login, mail, pass, rank) VALUES(:login, :mail, :pass, :rank)', [':login' => $login, ':mail' => $mail, ':pass' => $hmdp, ':rank' => $rank]);
+        mail($mail, '[ASBF] Compte admin', "Utilisateur : $login\n Mot de passe : $mdp", 'FROM: contact@asbf.fr');
+        $ok = 'Ok !';
     } else {
-        $error = "Nom d'utilisateur ou mail déjà pris";
+        $error = 'Nom d\'utilisateur ou mail déjà pris';
     }
 }
 
@@ -38,11 +37,11 @@ if (isset($_POST['nu'])) {
                         </h1>
                     </div>
                     <?php
-                    if ($data["rank"] != 1) {
+                    if ($user->rank != 1):
                         echo "<h1>CETTE PAGE VOUS EST INTERDITE</h1> <a href='index.php'>retour index</a>";
-                    } else {
+                    else:
                     ?>
-                    <span style="color:green;"><?php echo $ok; ?></span><span style="color:red;"><?php echo $error; ?></span>
+                    <span style="color:green;"><?= $ok ?></span><span style="color:red;"><?= $error ?></span>
                     <form method="POST" action="">
                         <div class="form-group">
                             <label>Mail</label>
@@ -56,13 +55,13 @@ if (isset($_POST['nu'])) {
                             <label>Rank</label>
                             <select class="form-control" name="rank">
                                 <?php
-                                $r = $bdd->query("SELECT * FROM `rank` ORDER BY `id` DESC");
+                                $data = $bdd->query('SELECT * FROM rank ORDER BY id DESC');
 
-                                while ($dr=$r->fetch()) {
-                                        ?>
-                                <option value="<?php echo $dr['id']; ?>"><?php echo $dr['rank']; ?></option>
+                                foreach ($data as $row):
+                                ?>
+                                <option value="<?= $row->id ?>"><?= $row->rank ?></option>
 
-                    <?php } ?>
+                                <?php endforeach ?>
                             </select>
                         </div>
                         <input type="submit" class="btn btn-success" name="nu" value="Nouveau Utilisateur" />
@@ -70,4 +69,4 @@ if (isset($_POST['nu'])) {
                 </div>
             </div>
         </div>
-<?php } ?>
+<?php endif ?>

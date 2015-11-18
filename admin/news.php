@@ -1,15 +1,17 @@
 <?php
-include("pages/header.php");
-$msg = NULL;
-if (isset($_POST['news'])) {
-    
-    $titre = htmlspecialchars($_POST["titre"]);
-    $article = $_POST["article"];
-    $auteur = $_POST["auteur"];
 
-    $n = $bdd->prepare("INSERT INTO `news` (`titre`,`auteur`,`datefr`,`article`) VALUES(?,?,NOW(),?)");
-    $n->execute(array($titre,$auteur,$article));
-    $msg = "Ok !";
+require_once __DIR__ . '/pages/header.php';
+
+$msg = NULL;
+
+if (isset($_POST['news'])) {
+    $titre = htmlspecialchars($_POST['titre']);
+    $article = $_POST['article'];
+    $auteur = $_POST['auteur'];
+
+    $bdd->execute('INSERT INTO news (titre, auteur, datefr, article) VALUES(:titre, :auteur, NOW(), :article)', [':titre' => $titre, ':auteur' => $auteur, ':article' => $article]);
+
+    $msg = 'Ok !';
 }
 
 ?>
@@ -46,7 +48,7 @@ if (isset($_POST['news'])) {
                             <small>Actu ASBF <a href="gest_news.php">Gérer les news</a></small>
                         </h1>
                     </div>
-                    <span style="color:green"><?php echo $msg; ?></span>
+                    <span style="color:green"><?= $msg ?></span>
                     <form method="POST" action="">
                         <div class="form-group">
                             <label>Titre</label>
@@ -54,8 +56,8 @@ if (isset($_POST['news'])) {
                         </div>
                         <div class="form-group">
                             <label>Auteur</label>
-                            <input type="text" value="<?php echo $data["login"]; ?>" class="form-control" disabled>
-                            <input type="hidden" value="<?php echo $data["login"]; ?>" name="auteur" class="form-control">
+                            <input type="text" value="<?= $user->login ?>" class="form-control" disabled>
+                            <input type="hidden" value="<?= $user->login ?>" name="auteur" class="form-control">
                         </div>
                         <div class="form-group">
                             <textarea rows="12" class="form-control" id="elm1" name="article"></textarea>

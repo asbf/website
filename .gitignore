@@ -1,2 +1,3 @@
-admin/pages/config.php
 sang/logins.php
+core/config/*
+core/security/*
