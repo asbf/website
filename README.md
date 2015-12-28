@@ -1,6 +1,7 @@
 # Actions Solidaires Brony Francophone
 
 Site web de l'ASBF.
+[![Build status](http://phpci.poni.fr/build-status/image/3)](http://phpci.poni.fr/build-status/view/3)
 
 ---
 

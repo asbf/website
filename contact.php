@@ -1,6 +1,6 @@
 <?php
 include 'pages/header.php';
-
+?>
         <div class="jumbotron">
             <h3>Nous contacter</h3>
             <hr>
