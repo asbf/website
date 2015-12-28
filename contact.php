@@ -15,7 +15,7 @@ include 'pages/header.php';
                             <li><b>Contact général :</b> contact@asbf.fr</li>
                             <li><b>Secrétariat :</b> secretaire@asbf.fr</li>
                             <li><b>Trésorie :</b> tresorier@asbf.fr</li>
-                            <li><b>Technique informatique :</b> tech@asbf.fr<</li>
+                            <li><b>Technique informatique :</b> tech@asbf.fr</li>
                             <li><b>Responsables communication :</b> rs@asbf.fr</li>
                         </ul>
                     </p>
